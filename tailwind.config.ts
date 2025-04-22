@@ -67,7 +67,10 @@ const config: Config = {
 				sm: "calc(var(--radius) - 4px)"
 			},
 			fontFamily: {
-				sans: [...fontFamily.sans]
+				sans: [...fontFamily.sans],
+				serif: [...fontFamily.serif],
+				inter: ["Inter", ...fontFamily.sans],
+				"special-gothic-expanded-one": ["Special Gothic Expanded One", ...fontFamily.sans],
 			},
 			keyframes: {
 				"accordion-down": {
