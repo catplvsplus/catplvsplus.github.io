@@ -1,7 +1,0 @@
-<script lang="ts">
-    import BuyMeCoffee from "$lib/components/BuyMeCoffee.svelte";
-    import Icon from '@iconify/svelte';
-</script>
-
-A financial support is always appreciated to support all of my ideas and projects. Buy me a coffee only if you like to <Icon icon="fluent-emoji:white-heart"/>!
-<BuyMeCoffee/>
