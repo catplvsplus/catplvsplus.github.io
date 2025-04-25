@@ -6,12 +6,10 @@
     import { blur, fade, slide } from 'svelte/transition';
     import { cn } from '../../helpers/utils';
     import { onClickOutside, PressedKeys } from 'runed';
-    import isMobile from 'is-mobile';
     import { beforeNavigate, goto } from '$app/navigation';
 
     let menu: HTMLDivElement = $state()!;
-    let menuOpen = $state(true);
-    let isMobileScreen = isMobile();
+    let menuOpen = $state(false);
 
     const keys = new PressedKeys();
 
@@ -46,14 +44,13 @@
 <nav
     class={cn(
         "fixed left-0 flex items-center justify-center w-full pointer-events-none p-4 z-50 transition-all duration-200 h-auto",
-        menuOpen && 'h-full',
-        isMobileScreen ? 'bottom-0' : 'top-0'
+        menuOpen && 'h-full'
     )}
 >
     <div
         bind:this={menu}
         class={cn(
-            "flex flex-col w-full max-h-full max-w-screen-md overflow-hidden rounded-xl pointer-events-auto dark:bg-background/80 bg-background/85 backdrop-blur-md border shadow-lg transition-[max-width] duration-200",
+            "flex flex-col w-full max-h-full max-w-screen-sm overflow-hidden rounded-xl pointer-events-auto dark:bg-background/80 bg-background/85 backdrop-blur-md border shadow-lg transition-[max-width] duration-200",
             menuOpen && 'max-w-md'
         )}
     >
@@ -85,10 +82,10 @@
                     pointer-events: none;
                 }
             </style>
-            <div class="w-full flex flex-col" transition:slide={{ axis: 'y', delay: isMobileScreen || !menuOpen ? 0 : 200, duration: 300 }}>
+            <div class="w-full flex flex-col" transition:slide={{ axis: 'y', delay: !menuOpen ? 0 : 200, duration: 300 }}>
                 <div
                     class="w-full p-3 flex flex-col gap-2 text-lg font-thin font-special-gothic-expanded-one uppercase"
-                    transition:blur={{ amount: 30, opacity: 0, delay: isMobileScreen ? 0 : 100, duration: 200 }}
+                    transition:blur={{ amount: 30, opacity: 0, delay: 100, duration: 200 }}
                 >
                     {@render NavLink('Home', `${base}/#`)}
                     {@render NavLink('About', `${base}/#about`)}
@@ -99,7 +96,5 @@
         {/if}
     </div>
 </nav>
-{#if menuOpen}
-    <div transition:fade={{ duration: 200 }} class="fixed top-0 left-0 bg-background/50 backdrop-blur-sm h-full w-full z-40 pointer-events-none">
-    </div>
-{/if}
+<div class={cn("fixed top-0 left-0 bg-transparent backdrop-blur-none h-full w-full z-40 pointer-events-none transition-all duration-500", menuOpen && 'bg-background/50 backdrop-blur-sm')}>
+</div>
