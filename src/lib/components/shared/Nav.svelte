@@ -16,7 +16,6 @@
     onClickOutside(() => menu, () => menuOpen = false);
 
     const isEscapePressed = $derived(keys.has("Escape"));
-
     $effect(() => {
         if (isEscapePressed && menuOpen) {
             menuOpen = false
@@ -24,18 +23,31 @@
     });
 
     beforeNavigate(() => menuOpen = false);
+
+    function linkClicked(e: MouseEvent, link: string) {
+        e.preventDefault();
+
+        menuOpen = false;
+
+        const currentPath = window.location.pathname;
+        const linkWithoutHash = link.split('#')[0];
+        const hash = link.split('#')[1];
+
+        console.log(currentPath, linkWithoutHash, hash);
+
+        if (currentPath !== linkWithoutHash) {
+            return goto(link);
+        }
+
+        if (hash) document.getElementById(hash)?.scrollIntoView();
+    }
 </script>
 
 {#snippet NavLink(label: string, link: string)}
     <a
         class="p-2 rounded-md hover:bg-primary/80 hover:text-primary-foreground transition-colors duration-300"
         href={link}
-        onclick={e => {
-            e.preventDefault();
-
-            menuOpen = false;
-            goto(link);
-        }}
+        onclick={e => linkClicked(e, link)}
     >
         {label}
     </a>
@@ -87,7 +99,7 @@
                     class="w-full p-3 flex flex-col gap-2 text-lg font-thin font-special-gothic-expanded-one uppercase"
                     transition:blur={{ amount: 30, opacity: 0, delay: 100, duration: 200 }}
                 >
-                    {@render NavLink('Home', `${base}/#`)}
+                    {@render NavLink('Home', `${base}/#home`)}
                     {@render NavLink('About', `${base}/#about`)}
                     {@render NavLink('Projects', `${base}/#projects`)}
                     {@render NavLink('Contact', `${base}/#contact`)}
@@ -96,5 +108,5 @@
         {/if}
     </div>
 </nav>
-<div class={cn("fixed top-0 left-0 bg-transparent backdrop-blur-none h-full w-full z-40 pointer-events-none transition-all duration-500", menuOpen && 'bg-background/50 backdrop-blur-sm')}>
+<div class={cn("fixed top-0 left-0 bg-transparent backdrop-blur-none h-full w-full z-40 pointer-events-none transition-all duration-500", menuOpen && 'bg-black/20 backdrop-blur-sm')}>
 </div>
