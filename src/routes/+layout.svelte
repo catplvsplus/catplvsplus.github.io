@@ -8,6 +8,7 @@
   	import { onMount } from 'svelte';
 	import Variables from '../lib/helpers/variables.svelte';
     import { toast } from 'svelte-sonner';
+    import ConfettiPopper from '../lib/components/shared/ConfettiPopper.svelte';
 
 	let { children } = $props();
 
@@ -40,6 +41,7 @@
 	});
 </script>
 
+<ConfettiPopper/>
 <Toaster/>
 <ModeWatcher/>
 <Nav/>
