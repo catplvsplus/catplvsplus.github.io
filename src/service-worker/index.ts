@@ -46,9 +46,12 @@ async function serveFromCache(request: Request) {
 
     if (isGithubRequest && request.method === 'GET') {
         const cached = await cache.match(request);
+
         if (cached) {
             console.log('Serving from cache', url.href);
             return cached;
+        } else {
+            console.warn('Cache miss', url.href);
         }
     }
 

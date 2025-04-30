@@ -84,7 +84,7 @@
                 </a>
             </h1>
             <div>
-                <Button variant="outline" size="icon" class="bg-background/50" onclick={() => toggleMode()}>
+                <Button variant="outline" size="icon" class="bg-foreground/5" onclick={() => toggleMode()}>
                     {#if mode.current === 'dark'}
                         <Sun/>
                     {:else}
