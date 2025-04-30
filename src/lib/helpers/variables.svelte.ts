@@ -1,6 +1,7 @@
 import { MediaQuery } from 'svelte/reactivity';
 import type { IGithubRepo, IGithubUser } from './types';
 import { PersistedState } from 'runed';
+import isMobile from 'is-mobile';
 
 export class Variables {
     public static username: string = 'catplvsplus';
@@ -13,13 +14,13 @@ export class Variables {
     ];
 
     public query = new MediaQuery('(prefers-reduced-motion: reduce)', true);
-    public transparencyStore: PersistedState<boolean> = new PersistedState('transparency', true, { storage: 'local', syncTabs: true });
+    public transparencyStore: PersistedState<boolean|null> = new PersistedState('transparency', null, { storage: 'local', syncTabs: true });
 
     public user: IGithubUser|null = $state(null);
     public repositories: IGithubRepo[]|null = $state(null);
     public busy: boolean = $state(false);
     public reducedMotion: boolean = $derived(this.query.current);
-    public transparency: boolean = $derived(this.transparencyStore.current);
+    public transparency: boolean|null = $derived(this.transparencyStore.current ?? !isMobile({ tablet: false  }));
 
     public async fetch(): Promise<void> {
         this.busy = true;

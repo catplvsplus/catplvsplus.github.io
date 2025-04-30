@@ -1,7 +1,6 @@
 <script lang="ts">
     import { cn } from '../../helpers/utils';
     import { Button } from "../ui/button";
-    import Variables from "$lib/helpers/variables.svelte";
 </script>
 
 <div class="h-1/2 min-h-fit flex justify-center items-center relative" id="home">
