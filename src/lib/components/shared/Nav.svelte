@@ -72,7 +72,16 @@
     >
         <div class="flex items-center justify-between gap-4 h-16 w-full p-3">
             <h1 class="text-2xl text-primary font-normal text-shadow-lg text-shadow-primary font-special-gothic-expanded-one px-2">
-                <a href="{base}/" onmouseover={popConfetti} onfocus={null}>cat++</a>
+                <a
+                    href="{base}/"
+                    onmouseover={e => popConfetti(e, {
+                        colors: ['hsl(var(--primary))', 'hsl(var(--primary))'],
+                        delay: 0
+                    })}
+                    onfocus={null}
+                >
+                    cat++
+                </a>
             </h1>
             <div>
                 <Button variant="outline" size="icon" class="bg-background/50" onclick={() => toggleMode()}>

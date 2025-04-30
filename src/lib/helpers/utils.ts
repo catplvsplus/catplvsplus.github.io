@@ -1,14 +1,14 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import Popper from "$lib/helpers/popper.svelte";
+import Popper, { type ConfettiOptions } from "$lib/helpers/popper.svelte";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
-export async function popConfetti(e: MouseEvent & { currentTarget: EventTarget & HTMLAnchorElement }) {
+export async function popConfetti(e: MouseEvent & { currentTarget: EventTarget & HTMLAnchorElement }, options?: Omit<ConfettiOptions, 'x'|'y'>) {
 	const x = e.clientX;
 	const y = e.clientY;
 
-	Popper.addConfetti(x, y);
+	Popper.addConfetti({ x, y, ...options });
 }
