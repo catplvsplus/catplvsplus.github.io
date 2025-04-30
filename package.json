@@ -33,7 +33,9 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"cookie-muncher": "^0.4.6",
 		"is-mobile": "^5.0.0",
-		"runed": "^0.25.0"
+		"runed": "^0.25.0",
+		"svelte-confetti": "^2.3.1"
 	}
 }

@@ -1,6 +1,11 @@
+<script lang="ts">
+    import Home from "$lib/components/pages/Home.svelte";
+    import About from '$lib/components/pages/About.svelte';
+</script>
+
 <svelte:head>
     <title>Cat++</title>
 </svelte:head>
 
-<div class="h-full" id="home"></div>
-<div class="h-full" id="about"></div>
+<Home/>
+<About/>

@@ -4,18 +4,46 @@
   	import { ModeWatcher } from 'mode-watcher';
   	import { Toaster } from '../lib/components/ui/sonner';
   	import Nav from '../lib/components/shared/Nav.svelte';
-  	import { isMobile } from 'is-mobile';
-  import { cn } from '../lib/helpers/utils';
+  	import { cn } from '../lib/helpers/utils';
+  	import { onMount } from 'svelte';
+	import Variables from '../lib/helpers/variables.svelte';
+    import { toast } from 'svelte-sonner';
 
 	let { children } = $props();
 
-	let isMobileScreen = isMobile();
+	async function updateServiceWorker() {
+        const registration = await navigator.serviceWorker.ready;
+
+        registration.addEventListener('updatefound', () => {
+            const newWorker = registration.installing;
+
+            newWorker?.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed') {
+                    toast.info('New update is available!', {
+                        duration: 60000,
+                        action: {
+                            label: 'Reload',
+                            onClick: () => {
+                                newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                window.location.reload();
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    }
+
+	onMount(async () => {
+		await updateServiceWorker();
+		await Variables.fetch();
+	});
 </script>
 
 <Toaster/>
 <ModeWatcher/>
 <Nav/>
 
-<div class={cn("w-full h-full", isMobileScreen ? 'pb-[6.125rem]' : 'pt-[6.125rem]')}>
+<div class={cn("w-full h-full pt-[6.125rem]")}>
 	{@render children()}
 </div>
