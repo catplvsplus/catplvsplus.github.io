@@ -37,7 +37,7 @@
 
 	onMount(async () => {
 		await updateServiceWorker();
-		await Variables.fetch();
+		setTimeout(() => Variables.fetch(), 5000);
 	});
 </script>
 

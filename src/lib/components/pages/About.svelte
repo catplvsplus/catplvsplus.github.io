@@ -2,6 +2,8 @@
     import Variables from "$lib/helpers/variables.svelte";
     import { fade } from 'svelte/transition';
     import { Skeleton } from '../ui/skeleton';
+  import { Button } from '../ui/button';
+  import { ExternalLink } from '@lucide/svelte';
 
     let avatar: HTMLImageElement|null = $state(null);
 </script>
@@ -9,7 +11,7 @@
 
 <div class="flex flex-col items-center gap-5 p-5" id="about">
     {#if Variables.user}
-        <div class="sm:w-full min-w-fit max-w-2xl p-5 bg-foreground/5 border shadow-sm rounded-2xl" in:fade={{duration: !Variables.reducedMotion ? 300 : 0}}>
+        <div class="w-full sm:max-w-2xl max-w-sm p-5 bg-foreground/5 border shadow-sm rounded-2xl" in:fade={{duration: !Variables.reducedMotion ? 300 : 0}}>
             <div class="flex sm:flex-row flex-col sm:gap-5 gap-7 items-center">
                 <img
                     id="avatar"
@@ -34,7 +36,7 @@
             </div>
         </div>
     {:else}
-        <div class="sm:w-full min-w-fit max-w-2xl p-5 bg-foreground/5 border shadow-sm rounded-2xl">
+        <div class="w-full sm:max-w-2xl max-w-sm p-5 bg-foreground/5 border shadow-sm rounded-2xl">
             <div class="flex sm:flex-row flex-col sm:gap-5 gap-7 items-center">
                 <Skeleton class="size-52 sm:size-32 shrink-0 rounded-full object-cover border" />
                 <div class="flex flex-col gap-5 sm:gap-4 sm:py-1 sm:items-start items-center">
@@ -48,11 +50,38 @@
             </div>
         </div>
     {/if}
-    <div class="flex sm:flex-row flex-col gap-5 w-full max-w-2xl">
+    <div class="flex sm:flex-row flex-col gap-5 w-full sm:max-w-2xl max-w-sm">
         <div class="sm:w-1/2 w-full p-5 bg-foreground/5 border shadow-sm rounded-2xl" in:fade={{duration: !Variables.reducedMotion ? 300 : 0}}>
-            
+            {#snippet Stat(label: string, value: string|null)}
+                <div class="flex flex-col gap-2">
+                    <span class="text-muted-foreground">{label}</span>
+                    <span class="font-semibold">
+                        {#if value}
+                            <span in:fade={{  duration: !Variables.reducedMotion ? 300 : 0 }}>{value}</span>
+                        {:else}
+                            <Skeleton class="h-4 rounded-full w-10 max-w-full"/>
+                        {/if}
+                    </span>
+                </div>
+            {/snippet}
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="font-special-gothic-expanded-one text-2xl">Stats</h2>
+                {#if Variables.user}
+                    <Button variant="outline" size="sm" class="h-8 rounded-lg bg-background/10" href={Variables.user?.html_url} target="_blank" rel="noopener noreferrer">
+                        View All <ExternalLink/>
+                    </Button>
+                {:else}
+                    <Skeleton class="h-8 rounded-lg w-20 max-w-full"/>
+                {/if}
+            </div>
+            <div class="grid grid-cols-3 gap-2">
+                {@render Stat('Followers', Variables.user?.followers.toLocaleString() ?? null)}
+                {@render Stat('Following', Variables.user?.following.toLocaleString() ?? null)}
+                {@render Stat('Repos', Variables.user?.public_repos.toLocaleString() ?? null)}
+            </div>
         </div>
         <div class="sm:w-1/2 w-full p-5 bg-foreground/5 border shadow-sm rounded-2xl" in:fade={{duration: !Variables.reducedMotion ? 300 : 0}}>
+            <h2 class="font-special-gothic-expanded-one text-2xl">Interests</h2>
         </div>
     </div>
 </div>

@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
-export async function popConfetti(e: MouseEvent & { currentTarget: EventTarget & HTMLAnchorElement }, options?: Omit<ConfettiOptions, 'x'|'y'>) {
+export async function popConfetti(e: MouseEvent & { currentTarget: EventTarget }, options?: Omit<ConfettiOptions, 'x'|'y'>) {
 	const x = e.clientX;
 	const y = e.clientY;
 

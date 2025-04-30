@@ -1,6 +1,7 @@
 export interface ConfettiOptions {
     x: number;
     y: number;
+    rounded?: boolean;
     colors?: string[];
     amount?: number;
     delay?: number;

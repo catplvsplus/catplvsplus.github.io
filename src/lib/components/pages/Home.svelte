@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { cn } from '../../helpers/utils';
+    import { cn, popConfetti } from '../../helpers/utils';
     import { Button } from "../ui/button";
 </script>
 
@@ -9,6 +9,16 @@
         <p class={cn("font-inter text-2xl text-muted-foreground leading-tight max-w-lg")}>
             A hobbyist developer with a special interest in javascript and web development
         </p>
-        <Button onclick={() => window.scrollTo(0, document.body.scrollHeight)}>Explore More</Button>
+        <Button
+            onmouseover={e => popConfetti(e, {
+                colors: ['hsl(var(--primary))'],
+                amount: 10,
+                delay: 0
+            })}
+            onfocus={null}
+            onclick={() => window.scrollTo(0, document.body.scrollHeight)}
+        >
+            Explore More
+        </Button>
     </div>
 </div>

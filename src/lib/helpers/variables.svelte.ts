@@ -19,8 +19,9 @@ export class Variables {
     public user: IGithubUser|null = $state(null);
     public repositories: IGithubRepo[]|null = $state(null);
     public busy: boolean = $state(false);
+    public isMobile: boolean = $state(isMobile());
     public reducedMotion: boolean = $derived(this.query.current);
-    public transparency: boolean|null = $derived(this.transparencyStore.current ?? !isMobile({ tablet: false  }));
+    public transparency: boolean|null = $derived(this.transparencyStore.current ?? !this.isMobile);
 
     public async fetch(): Promise<void> {
         this.busy = true;

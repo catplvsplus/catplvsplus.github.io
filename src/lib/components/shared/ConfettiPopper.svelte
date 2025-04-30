@@ -4,11 +4,12 @@
     import Confetti from 'svelte-confetti';
 </script>
 
-{#if !Variables.reducedMotion}
-    <div class="h-full w-full fixed pointer-events-none z-50">
+{#if !Variables.reducedMotion && !Variables.isMobile}
+    <div class="h-full w-full fixed pointer-events-none z-40">
         {#each Popper.confettis as confetti}
             <div class="absolute" style="top: {confetti.y}px; left: {confetti.x}px;">
                 <Confetti
+                    rounded={confetti.rounded}
                     colorArray={confetti.colors ?? []}
                     delay={[0, confetti.delay ?? Popper.delay]}
                     x={[-0.5, 0.5]}

@@ -62,10 +62,13 @@ async function serveFromCache(request: Request) {
 
         return response;
     } catch (error) {
+        console.log('Falling back to cache', url.href);
         const cached = await cache.match(request);
         if (cached) {
             console.log('Serving from cache', url.href);
             return cached;
+        } else {
+            console.error('Cache miss', url.href);
         }
     }
 
