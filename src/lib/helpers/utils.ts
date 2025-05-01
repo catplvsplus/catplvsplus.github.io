@@ -12,3 +12,7 @@ export async function popConfetti(e: MouseEvent & { currentTarget: EventTarget }
 
 	Popper.addConfetti({ x, y, ...options });
 }
+
+export async function calculateLangsStats(langs: IGithubLangStat) {
+	const total = Object.values(langs?.langs ?? {}).reduce((a, b) => a + b, 0) || 0;
+}

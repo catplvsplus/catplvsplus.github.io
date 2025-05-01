@@ -1,5 +1,5 @@
 import { MediaQuery } from 'svelte/reactivity';
-import type { IGithubRepo, IGithubUser } from './types';
+import type { IGithubRepo, IGithubUser, IGithubLangStat } from './types';
 import { PersistedState } from 'runed';
 import isMobile from 'is-mobile';
 
@@ -13,15 +13,19 @@ export class Variables {
         'FalloutStudios/fallout-utility',
     ];
 
-    public query = new MediaQuery('(prefers-reduced-motion: reduce)', true);
-    public transparencyStore: PersistedState<boolean|null> = new PersistedState('transparency', null, { storage: 'local', syncTabs: true });
+    public reducedMotionQuery = new MediaQuery('(prefers-reduced-motion: reduce)', true);
+    public reducedTransparencyQuery = new MediaQuery('(prefers-reduced-transparency: reduce)', true);
+
+    public reducedMotionStore: ersistedState<boolean|null> = new PersistedState('reduced-motion', null, { storage: 'local', syncTabs: true });
+    public reducedTransparencyStore: PersistedState<boolean|null> = new PersistedState('transparency', null, { storage: 'local', syncTabs: true });
 
     public user: IGithubUser|null = $state(null);
     public repositories: IGithubRepo[]|null = $state(null);
+    public langs: IGithubLangStat|null = $state(null);
     public busy: boolean = $state(false);
     public isMobile: boolean = $state(isMobile());
-    public reducedMotion: boolean = $derived(this.query.current);
-    public transparency: boolean|null = $derived(this.transparencyStore.current ?? !this.isMobile);
+    public reducedMotion: boolean = $derived(this.reducedMotionStore.current ?? this.reducedMotionQuery.current);
+    public transparency: boolean|null = $derived(this.reducedTransparencyStore.current ?? !this.reducedTransparencyQuery.current);
 
     public async fetch(): Promise<void> {
         this.busy = true;
@@ -46,6 +50,14 @@ export class Variables {
 
     public async fetchRepositories(): Promise<IGithubRepo[]> {
         return this.repositories = (await Promise.all(Variables.repositories.map(url => Variables.fetchRepository(url)))).filter(Boolean) as IGithubRepo[];
+    }
+
+    public async fetchLangs(): Promise<IGithubLangStat|null> {
+        const response: IGithubLangStat|null = await fetch(`https://github-user-language-breakdown.vercel.app/api/langs?name=${Variables.username}&isOrg=false`)
+            .then(async res => res.ok ? await res.json() : null)
+            .catch(() => null);
+
+        return this.langs = response;
     }
 
     public static async fetchRepository(url: string): Promise<IGithubRepo|null> {

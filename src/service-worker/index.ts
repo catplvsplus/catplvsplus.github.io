@@ -5,7 +5,7 @@ declare let self: ServiceWorkerGlobalScope;
 
 import { build, files, version } from '$service-worker';
 
-const cacheName = `cache-v${version}`;
+const cacheName = `cache-${version}`;
 const assets = [...files, ...build];
 
 self.addEventListener('install', (event) => {
@@ -42,16 +42,16 @@ async function clearOldCache() {
 async function serveFromCache(request: Request) {
     const url = new URL(request.url);
     const cache = await caches.open(cacheName);
-    const isGithubRequest = url.hostname === 'api.github.com';
+    const isCors = url.hostname !== self.location.hostname && url.protocol.startsWith('http');
 
-    if (isGithubRequest && request.method === 'GET') {
+    if (isCors && request.method === 'GET') {
         const cached = await cache.match(request);
 
         if (cached) {
             console.log('Serving from cache', url.href);
             return cached;
         } else {
-            console.warn('Cache miss', url.href);
+            console.warn('Cache miss for CORS request', url.href);
         }
     }
 
@@ -60,7 +60,7 @@ async function serveFromCache(request: Request) {
 
         if (response.ok && url.protocol.startsWith('http')) {
             cache.put(request.url, response.clone());
-            console.log('Serving from network', url.href);
+            console.log('Serving from network' + (isCors ? ' and caching it' : ''), url.href);
         }
 
         return response;

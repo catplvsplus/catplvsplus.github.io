@@ -48,3 +48,8 @@ export interface IGithubRepo {
         spdx_id: string;
     };
 }
+
+export interface IGithubLangStat {
+    name: string;
+    langs: Record<string, number>;
+}
