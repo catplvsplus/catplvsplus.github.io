@@ -5,6 +5,7 @@
     import KissingCat from '$lib/components/svg/KissingCat.svelte';
     import Variables from '$lib/helpers/variables.svelte';
     import ParallaxContainer from '$lib/components/shared/ParallaxContainer.svelte';
+    import { toast } from 'svelte-sonner';
 </script>
 
 <div class="sm:h-1/2 h-3/4 min-h-fit  flex justify-center items-center relative overflow-x-clip" id="home">
@@ -20,7 +21,10 @@
                 delay: 0
             })}
             onfocus={null}
-            onclick={() => document.querySelector("#about")?.scrollIntoView()}
+            onclick={() => {
+                document.querySelector("#about")?.scrollIntoView();
+                toast.info("This page is still under development and will be updated soon 😉!");
+            }}
         >
             Explore More
         </Button>
