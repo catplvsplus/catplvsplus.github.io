@@ -30,12 +30,12 @@
         </Button>
         {#if !Variables.reducedMotion}
             <ParallaxContainer class="z-10 left-1/2 !-translate-x-1/2 sm:max-w-full max-w-[85%] min-w-[360px]">
-                <span class="parallax-object layer -z-10" data-depth="-0.1">
+                <span class="parallax-object layer -z-10" data-depth={Variables.isMobile ? "-0.5" : "-0.15"}>
                     <KissingCat class="animate-float size-32 absolute rotate-[25deg] sm:top-[3%] sm:left-[-1.5%] top-10 -left-10"/>
                 </span>
             </ParallaxContainer>
-            <ParallaxContainer class="-z-10">
-                <span class="parallax-object layer -z-10" data-depth="0.1">
+            <ParallaxContainer class="-z-10" options={{ invertX: true }}>
+                <span class="parallax-object layer -z-10" data-depth={Variables.isMobile ? "0.5" : "0.15"}>
                     <Heart class="animate-float delay-700 size-32 absolute -rotate-[20deg] opacity-90 dark:opacity-80" style="right: -0.5%; top: -15%;"/>
                 </span>
             </ParallaxContainer>
