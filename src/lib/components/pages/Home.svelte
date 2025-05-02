@@ -29,9 +29,9 @@
             Explore More
         </Button>
         {#if !Variables.reducedMotion}
-            <ParallaxContainer class="z-10">
+            <ParallaxContainer class="z-10 left-1/2 !-translate-x-1/2 sm:max-w-full max-w-[85%] min-w-[360px]">
                 <span class="parallax-object layer -z-10" data-depth="-0.1">
-                    <KissingCat class="animate-float size-32 absolute rotate-[25deg] sm:top-[3%] sm:left-[-1.5%]"/>
+                    <KissingCat class="animate-float size-32 absolute rotate-[25deg] sm:top-[3%] sm:left-[-1.5%] top-10 -left-10"/>
                 </span>
             </ParallaxContainer>
             <ParallaxContainer class="-z-10">
