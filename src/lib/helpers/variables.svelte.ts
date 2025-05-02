@@ -16,7 +16,7 @@ export class Variables {
     public reducedMotionQuery = new MediaQuery('(prefers-reduced-motion: reduce)', true);
     public reducedTransparencyQuery = new MediaQuery('(prefers-reduced-transparency: reduce)', true);
 
-    public reducedMotionStore: ersistedState<boolean|null> = new PersistedState('reduced-motion', null, { storage: 'local', syncTabs: true });
+    public reducedMotionStore: PersistedState<boolean|null> = new PersistedState('reduced-motion', null, { storage: 'local', syncTabs: true });
     public reducedTransparencyStore: PersistedState<boolean|null> = new PersistedState('transparency', null, { storage: 'local', syncTabs: true });
 
     public user: IGithubUser|null = $state(null);
@@ -37,7 +37,7 @@ export class Variables {
     }
 
     public setTransparency(value: boolean): void {
-        this.transparencyStore.current = value;
+        this.reducedTransparencyStore.current = !value;
     }
 
     public async fetchUserData(): Promise<IGithubUser|null> {

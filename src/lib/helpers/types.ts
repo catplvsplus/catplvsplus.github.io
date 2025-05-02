@@ -53,3 +53,9 @@ export interface IGithubLangStat {
     name: string;
     langs: Record<string, number>;
 }
+
+export interface LangStat {
+    lang: string;
+    count: number;
+    percent: number;
+}
