@@ -49,13 +49,4 @@ export interface IGithubRepo {
     };
 }
 
-export interface IGithubLangStat {
-    name: string;
-    langs: Record<string, number>;
-}
-
-export interface LangStat {
-    lang: string;
-    count: number;
-    percent: number;
-}
+export interface SongOfTheDay { id: string; savedAt: number; }

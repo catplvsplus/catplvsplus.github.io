@@ -2,8 +2,8 @@
     import Variables from "$lib/helpers/variables.svelte";
     import { fade } from 'svelte/transition';
     import { Skeleton } from '../ui/skeleton';
-  import { Button } from '../ui/button';
-  import { ExternalLink } from '@lucide/svelte';
+    import { Button } from '../ui/button';
+    import { ExternalLink, RefreshCcw } from '@lucide/svelte';
 
     let avatar: HTMLImageElement|null = $state(null);
 </script>
@@ -81,7 +81,28 @@
             </div>
         </div>
         <div class="sm:w-1/2 w-full p-5 bg-foreground/5 border shadow-sm rounded-2xl" in:fade={{duration: !Variables.reducedMotion ? 300 : 0}}>
-            <h2 class="font-special-gothic-expanded-one text-2xl">Interests</h2>
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="font-special-gothic-expanded-one text-2xl">Song of the day</h2>
+                <Button variant="outline" size="icon" class="h-8 w-8 p-0 rounded-lg bg-background/10" onclick={() => Variables.refreshSongId()}>
+                    <RefreshCcw/>
+                </Button>
+            </div>
+            <div>
+                {#key Variables.songId}
+                    <iframe
+                            src="https://open.spotify.com/embed/track/{Variables.songId}?utm_source=generator"
+                            width="100%"
+                            height="80"
+                            class="rounded-xl border-none"
+                            allowfullscreen={true}
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                            loading="lazy"
+                            title="Song of the day"
+                            in:fade={{ duration: !Variables.reducedMotion ? 500 : 0, delay: !Variables.reducedMotion ? 1000 : 0 }}
+                    >
+                    </iframe>
+                {/key}
+            </div>
         </div>
     </div>
 </div>
