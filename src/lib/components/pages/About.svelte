@@ -97,7 +97,7 @@
                             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                             loading="lazy"
                             title="Song of the day"
-                            in:blur={{ duration: !Variables.reducedMotion ? 500 : 0, delay: !Variables.reducedMotion ? 500 : 0 }}
+                            in:blur={{ duration: !Variables.reducedMotion ? 500 : 0, delay: !Variables.reducedMotion ? 300 : 0 }}
                             out:blur={{ duration: !Variables.reducedMotion ? 500 : 0 }}
                     >
                     </iframe>
