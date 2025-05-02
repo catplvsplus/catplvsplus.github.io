@@ -4,6 +4,7 @@
     import { Skeleton } from '../ui/skeleton';
     import { Button } from '../ui/button';
     import { ExternalLink, RefreshCcw } from '@lucide/svelte';
+    import SpotifyEmbed from '$lib/components/shared/SpotifyEmbed.svelte';
 
     let avatar: HTMLImageElement|null = $state(null);
 </script>
@@ -88,19 +89,13 @@
             </div>
             <div class="h-20 w-full relative">
                 {#key Variables.songId}
-                    <iframe
-                            src="https://open.spotify.com/embed/track/{Variables.songId}?utm_source=generator"
-                            width="100%"
-                            height="80"
-                            class="absolute top-0 left-0 rounded-xl border-none shadow-md"
-                            allowfullscreen={true}
-                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                            loading="lazy"
-                            title="Song of the day"
-                            in:blur={{ duration: !Variables.reducedMotion ? 500 : 0, delay: !Variables.reducedMotion ? 300 : 0 }}
-                            out:blur={{ duration: !Variables.reducedMotion ? 500 : 0 }}
+                    <div
+                        class="absolute top-0 left-0"
+                        in:blur={{ duration: !Variables.reducedMotion ? 500 : 0, delay: !Variables.reducedMotion ? 500 : 0 }}
+                        out:blur={{ duration: !Variables.reducedMotion ? 500 : 0 }}
                     >
-                    </iframe>
+                        <SpotifyEmbed id={Variables.songId}/>
+                    </div>
                 {/key}
             </div>
         </div>
