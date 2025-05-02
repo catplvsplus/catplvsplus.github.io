@@ -92,7 +92,7 @@
                             src="https://open.spotify.com/embed/track/{Variables.songId}?utm_source=generator"
                             width="100%"
                             height="80"
-                            class="absolute top-0 left-0 rounded-xl border-none"
+                            class="absolute top-0 left-0 rounded-xl border-none shadow-md"
                             allowfullscreen={true}
                             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                             loading="lazy"

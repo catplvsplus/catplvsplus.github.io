@@ -20,9 +20,11 @@ export class Variables {
     public reducedMotionStore: PersistedState<boolean|null> = new PersistedState('reduced-motion', null, { storage: 'local', syncTabs: true });
     public reducedTransparencyStore: PersistedState<boolean|null> = new PersistedState('transparency', null, { storage: 'local', syncTabs: true });
     public songIdStore: PersistedState<SongOfTheDay> = new PersistedState('song-id', {
-        id: Variables.getRandomSongId(),
+        id: Variables.getRandomSongId()!,
         savedAt: Date.now()
     }, { storage: 'local', syncTabs: true });
+
+    public songsRecommendedStore: PersistedState<string[]> = new PersistedState('songs-recommended', [], { storage: 'local', syncTabs: true });
 
     public user: IGithubUser|null = $state(null);
     public repositories: IGithubRepo[]|null = $state(null);
@@ -45,8 +47,19 @@ export class Variables {
     }
 
     public refreshSongId(): SongOfTheDay {
+        const excludeIds = this.songsRecommendedStore.current;
+
+        let id = Variables.getRandomSongId([this.songId, ...excludeIds]);
+
+        if (!id) {
+            this.songsRecommendedStore.current = [];
+            return this.refreshSongId();
+        }
+
+        this.songsRecommendedStore.current.push(id);
+
         return this.songIdStore.current = {
-            id: Variables.getRandomSongId([this.songId]),
+            id: id!,
             savedAt: Date.now()
         };
     }
@@ -83,7 +96,7 @@ export class Variables {
             .catch(() => null);
     }
 
-    public static getRandomSongId(excludeIds?: string[]): string {
+    public static getRandomSongId(excludeIds?: string[]): string|undefined {
         const list = favoriteSongIds.filter(i => !excludeIds?.includes(i));
         return list[Math.floor(Math.random() * list.length)];
     }
