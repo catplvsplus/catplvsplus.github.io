@@ -16,7 +16,7 @@
                 delay: 0
             })}
             onfocus={null}
-            onclick={() => window.scrollTo(0, document.body.scrollHeight)}
+            onclick={() => document.querySelector("#about")?.scrollIntoView()}
         >
             Explore More
         </Button>
