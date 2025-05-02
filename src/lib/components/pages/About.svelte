@@ -1,13 +1,12 @@
 <script lang="ts">
     import Variables from "$lib/helpers/variables.svelte";
-    import { fade } from 'svelte/transition';
+    import { blur, fade } from 'svelte/transition';
     import { Skeleton } from '../ui/skeleton';
     import { Button } from '../ui/button';
     import { ExternalLink, RefreshCcw } from '@lucide/svelte';
 
     let avatar: HTMLImageElement|null = $state(null);
 </script>
-
 
 <div class="flex flex-col items-center gap-5 p-5" id="about">
     {#if Variables.user}
@@ -65,9 +64,9 @@
                 </div>
             {/snippet}
             <div class="flex items-center justify-between mb-3">
-                <h2 class="font-special-gothic-expanded-one text-2xl">Stats</h2>
+                <h2 class="font-special-gothic-expanded-one sm:text-2xl text-xl">Stats</h2>
                 {#if Variables.user}
-                    <Button variant="outline" size="sm" class="h-8 rounded-lg bg-background/10" href={Variables.user?.html_url} target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" size="sm" class="h-8 rounded-lg bg-background/10" title="View GitHub Profile" href={Variables.user?.html_url} target="_blank" rel="noopener noreferrer">
                         View All <ExternalLink/>
                     </Button>
                 {:else}
@@ -82,23 +81,24 @@
         </div>
         <div class="sm:w-1/2 w-full p-5 bg-foreground/5 border shadow-sm rounded-2xl" in:fade={{duration: !Variables.reducedMotion ? 300 : 0}}>
             <div class="flex items-center justify-between mb-3">
-                <h2 class="font-special-gothic-expanded-one text-2xl">Song of the day</h2>
-                <Button variant="outline" size="icon" class="h-8 w-8 p-0 rounded-lg bg-background/10" onclick={() => Variables.refreshSongId()}>
+                <h2 class="font-special-gothic-expanded-one sm:text-2xl text-xl">Song of the day</h2>
+                <Button variant="outline" size="icon" class="h-8 w-8 p-0 rounded-lg bg-background/10" onclick={() => Variables.refreshSongId()} title="Refresh song of the day ">
                     <RefreshCcw/>
                 </Button>
             </div>
-            <div>
+            <div class="h-20 w-full relative">
                 {#key Variables.songId}
                     <iframe
                             src="https://open.spotify.com/embed/track/{Variables.songId}?utm_source=generator"
                             width="100%"
                             height="80"
-                            class="rounded-xl border-none"
+                            class="absolute top-0 left-0 rounded-xl border-none"
                             allowfullscreen={true}
                             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                             loading="lazy"
                             title="Song of the day"
-                            in:fade={{ duration: !Variables.reducedMotion ? 500 : 0, delay: !Variables.reducedMotion ? 1000 : 0 }}
+                            in:blur={{ duration: !Variables.reducedMotion ? 500 : 0, delay: !Variables.reducedMotion ? 500 : 0 }}
+                            out:blur={{ duration: !Variables.reducedMotion ? 500 : 0 }}
                     >
                     </iframe>
                 {/key}
