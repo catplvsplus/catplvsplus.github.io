@@ -5,6 +5,7 @@
     import { Button } from '../ui/button';
     import { ExternalLink, RefreshCcw } from '@lucide/svelte';
     import SpotifyEmbed from '$lib/components/shared/SpotifyEmbed.svelte';
+    import { cn } from '$lib/helpers/utils';
 
     let avatar: HTMLImageElement|null = $state(null);
 </script>
@@ -74,27 +75,27 @@
                     <Skeleton class="h-8 rounded-lg w-20 max-w-full"/>
                 {/if}
             </div>
-            <div class="grid grid-cols-3 gap-2">
+            <div class="grid sm:grid-cols-[repeat(auto-fill,_minmax(60px,_1fr))] grid-cols-3 gap-4">
                 {@render Stat('Followers', Variables.user?.followers.toLocaleString() ?? null)}
                 {@render Stat('Following', Variables.user?.following.toLocaleString() ?? null)}
                 {@render Stat('Repos', Variables.user?.public_repos.toLocaleString() ?? null)}
             </div>
         </div>
-        <div class="sm:w-1/2 w-full p-5 bg-foreground/5 border shadow-sm rounded-2xl" in:fade={{duration: !Variables.reducedMotion ? 300 : 0}}>
+        <div class={cn("sm:w-[60%] md:w-3/4 sm:max-w-96 w-full p-5 bg-foreground/5 border shadow-sm rounded-2xl")} in:fade={{duration: !Variables.reducedMotion ? 300 : 0}}>
             <div class="flex items-center justify-between mb-3">
                 <h2 class="font-special-gothic-expanded-one sm:text-2xl text-xl">Song of the day</h2>
                 <Button variant="outline" size="icon" class="h-8 w-8 p-0 rounded-lg bg-background/10" onclick={() => Variables.refreshSongId()} title="Refresh song of the day ">
                     <RefreshCcw/>
                 </Button>
             </div>
-            <div class="h-20 w-full relative">
+            <div class={cn("h-20 min-w-56 w-full relative")}>
                 {#key Variables.songId}
                     <div
                         class="absolute top-0 left-0 w-full"
-                        in:blur={{ duration: !Variables.reducedMotion ? 500 : 0, delay: !Variables.reducedMotion ? 300 : 0 }}
+                        in:blur={{ duration: !Variables.reducedMotion ? 500 : 0, delay: !Variables.reducedMotion ? 400 : 0 }}
                         out:blur={{ duration: !Variables.reducedMotion ? 500 : 0 }}
                     >
-                        <SpotifyEmbed id={Variables.songId}/>
+                        <SpotifyEmbed id={Variables.songId} class="h-20"/>
                     </div>
                 {/key}
             </div>

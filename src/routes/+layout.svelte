@@ -1,14 +1,14 @@
 <script lang="ts">
 	import '$lib/styles/app.pcss';
 	import '$lib/styles/global.scss';
-  	import { ModeWatcher } from 'mode-watcher';
-  	import { Toaster } from '../lib/components/ui/sonner';
-  	import Nav from '../lib/components/shared/Nav.svelte';
-  	import { cn } from '../lib/helpers/utils';
-  	import { onMount } from 'svelte';
+	import { ModeWatcher } from 'mode-watcher';
+	import { Toaster } from '../lib/components/ui/sonner';
+	import Nav from '../lib/components/shared/Nav.svelte';
+	import { cn } from '$lib/helpers/utils';
+	import { onMount } from 'svelte';
 	import Variables from '../lib/helpers/variables.svelte';
-    import { toast } from 'svelte-sonner';
-    import ConfettiPopper from '../lib/components/shared/ConfettiPopper.svelte';
+	import { toast } from 'svelte-sonner';
+	import ConfettiPopper from '../lib/components/shared/ConfettiPopper.svelte';
 
 	let { children } = $props();
 

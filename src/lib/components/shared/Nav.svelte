@@ -1,10 +1,10 @@
 <script lang="ts">
     import { base } from "$app/paths";
     import { mode, toggleMode } from 'mode-watcher';
-    import { Sun, Moon, List, X } from '@lucide/svelte';
+    import { List, Moon, Sun, X } from '@lucide/svelte';
     import { Button } from '../ui/button';
     import { blur, slide } from 'svelte/transition';
-    import { cn, popConfetti } from '../../helpers/utils';
+    import { cn, popConfetti } from '$lib/helpers/utils';
     import { onClickOutside, PressedKeys } from 'runed';
     import { beforeNavigate, goto } from '$app/navigation';
     import Variables from '$lib/helpers/variables.svelte';

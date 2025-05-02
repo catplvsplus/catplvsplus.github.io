@@ -1,3 +1,18 @@
+import type Parallax from 'parallax-js';
+
+export const parallaxOptions: Parallax.ParallaxOptions = {
+    calibrateX: false,
+    calibrateY: true,
+    invertX: true,
+    invertY: true,
+    limitX: false,
+    limitY: false,
+    scalarX: 10.0,
+    scalarY: 10.0,
+    frictionX: 0.1,
+    frictionY: 0.1
+};
+
 export const favoriteSongIds: string[] = [
     '1dAKL41zeVDP8PiLJDsRQv',
     '0nyjSQaOraSpDDnadBJU49',
@@ -78,4 +93,7 @@ export const favoriteSongIds: string[] = [
     '06IkOr83qPqa3yYvrIjgxp',
     '4cBm8rv2B5BJWU2pDaHVbF',
     '2xCkiGqGMkAIg6fQTag51C',
+    '7b89Ffklm3xh4GI37vlZDZ',
+    '2Dhdu4YB3y5U3RiIcCJduv',
+    '2nqlM3gNBMi5Zf9MDzp2Xi',
 ];
