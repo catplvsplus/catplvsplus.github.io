@@ -27,6 +27,6 @@
     })
 </script>
 
-<div {...props} class={cn("absolute top-0 left-0 w-full h-full pointer-events-none", props.class)} bind:this={container}>
+<div {...props} class={cn("!absolute top-0 left-0 w-full h-full pointer-events-none", props.class)} bind:this={container}>
     {@render children?.()}
 </div>
