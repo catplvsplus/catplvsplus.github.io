@@ -56,7 +56,7 @@
 
 <nav
     class={cn(
-        "fixed left-0 flex items-center justify-center w-full pointer-events-none p-4 z-50 h-auto",
+        "fixed left-0 flex items-center justify-center w-full pointer-events-none p-4 z-50 h-[6.125rem]",
         !Variables.reducedMotion && 'transition-all duration-200',
         menuOpen && 'h-full'
     )}
