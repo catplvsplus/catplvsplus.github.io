@@ -43,9 +43,9 @@
 {#snippet VisualSettings()}
     <div class="flex flex-col gap-3 w-full">
         <div class="flex justify-between items-center w-full">
-            <Label class="flex items-center gap-2"><Sparkles class="shrink-0 text-primary" size="1.5em"/>Reduced Transparecy Effects</Label>
+            <Label class="flex items-center gap-2" for="reduced-transparency-option"><Sparkles class="shrink-0 text-primary" size="1.5em"/>Reduced Transparecy Effects</Label>
             <Select type="single" bind:value={reducedTransparency} onValueChange={() => Variables.reducedTransparencyStore.current = reducedTransparencyValue}>
-                <SelectTrigger class="w-fit gap-2 capitalize">
+                <SelectTrigger id="reduced-transparency-option" class="w-fit gap-2 capitalize">
                     {getSettingsPropertyValue(Variables.reducedTransparencyStore.current)}
                 </SelectTrigger>
                 <SelectContent>
@@ -56,9 +56,9 @@
             </Select>
         </div>
         <div class="flex justify-between items-center w-full">
-            <Label class="flex items-center gap-2"><GalleryHorizontalEnd class="shrink-0 text-primary" size="1.5em"/>Reduced Motion</Label>
+            <Label class="flex items-center gap-2" for="reduced-motion-option"><GalleryHorizontalEnd class="shrink-0 text-primary" size="1.5em"/>Reduced Motion</Label>
             <Select type="single" bind:value={reducedMotion} onValueChange={() => Variables.reducedMotionStore.current = reducedMotionValue}>
-                <SelectTrigger class="w-fit gap-2 capitalize">
+                <SelectTrigger id="reduced-motion-option" class="w-fit gap-2 capitalize">
                     {getSettingsPropertyValue(Variables.reducedMotionStore.current)}
                 </SelectTrigger>
                 <SelectContent>
@@ -70,9 +70,9 @@
         </div>
         {#if !Variables.isMobile}
             <div class="flex justify-between items-center w-full">
-                <Label class="flex items-center gap-2"><PartyPopper class="shrink-0 text-primary" size="1.5em"/> Pop Confetti</Label>
+                <Label class="flex items-center gap-2" for="enable-confetti-option"><PartyPopper class="shrink-0 text-primary" size="1.5em"/> Pop Confetti</Label>
                 <Select type="single" disabled={Variables.reducedMotion} bind:value={confetti} onValueChange={() => Variables.enableConfettiStore.current = enableConfettiValue}>
-                    <SelectTrigger class="w-fit gap-2 capitalize">
+                    <SelectTrigger id="enable-confetti-option" class="w-fit gap-2 capitalize">
                         {getSettingsPropertyValue(Variables.enableConfettiStore.current)}
                     </SelectTrigger>
                     <SelectContent>
