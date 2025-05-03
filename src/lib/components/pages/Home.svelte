@@ -8,7 +8,7 @@
     import { toast } from 'svelte-sonner';
 </script>
 
-<div class="sm:h-1/2 h-3/4 min-h-fit  flex justify-center items-center relative overflow-x-clip" id="home">
+<div class="sm:h-1/2 h-3/4 min-h-96 flex justify-center items-center relative overflow-x-clip" id="home">
     <div class="w-full sm:max-w-2xl max-w-md p-5 text-center flex flex-col items-center gap-4 relative">
         <h1 class="font-special-gothic-expanded-one text-7xl">Hi, I'm <span class="text-primary">cat++</span></h1>
         <p class={cn("font-inter text-2xl text-muted-foreground leading-tight sm:max-w-lg max-w-96")}>

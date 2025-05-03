@@ -6,7 +6,7 @@
     import StatsCard from '$lib/components/shared/StatsCard.svelte';
 </script>
 
-<div class="flex flex-col items-center gap-5 p-5 min-h-fit h-1/2" id="about">
+<div class="flex flex-col items-center gap-5 p-5 min-h-96" id="about">
     {#if Variables.user}
         <div class="w-full sm:max-w-2xl max-w-sm p-5 bg-border/80 border shadow-sm rounded-2xl relative z-10" in:fade={{duration: !Variables.reducedMotion ? 300 : 0}}>
             <div class="flex sm:flex-row flex-col sm:gap-5 gap-7 items-center">

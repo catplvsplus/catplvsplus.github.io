@@ -24,7 +24,7 @@
             </h1>
             <div class={cn("grid gap-2 w-full max-w-xs grid-cols-6")}>
                 {#each socialLinks as socialLink}
-                    <Button class="shrink-0" variant="secondary" size="icon" title={socialLink.name} href={socialLink.url} target="_blank">
+                    <Button class="shrink-0 dark:border-none border border-foreground/10" variant="secondary" size="icon" title={socialLink.name} href={socialLink.url} target="_blank">
                         {#if socialLink.icon}
                             <svelte:component this={socialLink.icon}/>
                         {:else}
@@ -37,7 +37,7 @@
         <div class="flex sm:flex-col flex-col-reverse items-center gap-5 w-full sm:w-fit">
             <p class="text-muted-foreground leading-10">Made with 🩷 by <a href="https://github.com/catplvsplus" target="_blank" class="text-primary font-semibold">@catplvsplus</a></p>
             <Button
-                class="w-full max-w-xs sm:w-fit"
+                class="w-full max-w-xs sm:w-fit dark:border-none border border-foreground/10"
                 variant="secondary"
                 title="Accessibility Settings"
                 onclick={() => pushState('', { openVisualEffectsSettings: true })}
