@@ -19,6 +19,7 @@ export class Variables {
 
     public reducedMotionStore: PersistedState<boolean|null> = new PersistedState('reduced-motion', null, { storage: 'local', syncTabs: true });
     public reducedTransparencyStore: PersistedState<boolean|null> = new PersistedState('transparency', null, { storage: 'local', syncTabs: true });
+    public enableConfettiStore: PersistedState<boolean|null> = new PersistedState('enable-confetti', null, { storage: 'local', syncTabs: true });
     public songIdStore: PersistedState<SongOfTheDay> = new PersistedState('song-id', {
         id: Variables.getRandomSongId()!,
         savedAt: Date.now()
@@ -31,7 +32,8 @@ export class Variables {
     public busy: boolean = $state(false);
     public isMobile: boolean = $state(isMobile());
     public reducedMotion: boolean = $derived(this.reducedMotionStore.current ?? this.reducedMotionQuery.current);
-    public transparency: boolean|null = $derived(this.reducedTransparencyStore.current ?? !this.reducedTransparencyQuery.current);
+    public transparency: boolean = $derived(this.reducedTransparencyStore.current ?? !this.reducedTransparencyQuery.current);
+    public enableConfetti: boolean = $derived(this.reducedMotion ? false : (this.enableConfettiStore.current ?? true));
     public songId: string = $derived(this.songIdStore.current.id);
 
     public async fetch(): Promise<void> {

@@ -1,4 +1,6 @@
 import type Parallax from 'parallax-js';
+import type { SocialLink } from '$lib/helpers/types';
+import { SiBluesky, SiDiscord, SiGithub, SiInstagram, SiSpotify, SiTiktok } from '@icons-pack/svelte-simple-icons';
 
 export const parallaxOptions: Parallax.ParallaxOptions = {
     calibrateX: false,
@@ -12,6 +14,39 @@ export const parallaxOptions: Parallax.ParallaxOptions = {
     frictionX: 0.1,
     frictionY: 0.1
 };
+
+export const socialLinks: SocialLink[] = [
+    {
+        name: "Github",
+        url: "https://github.com/catplvsplus",
+        icon: SiGithub
+    },
+    {
+        name: "Discord",
+        url: "https://discord.com/users/923444378951905340",
+        icon: SiDiscord
+    },
+    {
+        name: "Instagram",
+        url: "https://instagram.com/catplvsplus",
+        icon: SiInstagram
+    },
+    {
+        name: "Bluesky",
+        url: "https://bsky.app/profile/barbie.beyhive.social",
+        icon: SiBluesky
+    },
+    {
+        name: "TikTok",
+        url: "https://www.tiktok.com/@nxzz_vn",
+        icon: SiTiktok
+    },
+    {
+        name: "Spotify",
+        url: "https://open.spotify.com/user/31o67p6spk3qfxqsar6gmcszglqi?si=075b4fc19a0e4b74",
+        icon: SiSpotify
+    }
+];
 
 export const favoriteSongIds: string[] = [
     '1dAKL41zeVDP8PiLJDsRQv',

@@ -50,3 +50,9 @@ export interface IGithubRepo {
 }
 
 export interface SongOfTheDay { id: string; savedAt: number; }
+
+export interface SocialLink {
+    name: string;
+    url: string;
+    icon?: any;
+}
