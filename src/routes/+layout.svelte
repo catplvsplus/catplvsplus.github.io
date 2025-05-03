@@ -9,6 +9,7 @@
 	import Variables from '../lib/helpers/variables.svelte';
 	import { toast } from 'svelte-sonner';
 	import ConfettiPopper from '../lib/components/shared/ConfettiPopper.svelte';
+	import VisualEffectsSettingsModal from '$lib/components/shared/VisualEffectsSettingsModal.svelte';
 
 	let { children } = $props();
 
@@ -45,6 +46,7 @@
 <Toaster/>
 <ModeWatcher/>
 <Nav/>
+<VisualEffectsSettingsModal/>
 
 <div class={cn("w-full h-full pt-[6.125rem]")}>
 	{@render children()}

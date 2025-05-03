@@ -4,7 +4,7 @@
     import Confetti from 'svelte-confetti';
 </script>
 
-{#if !Variables.reducedMotion && !Variables.isMobile}
+{#if !Variables.reducedMotion && !Variables.isMobile && Variables.enableConfetti}
     <div class="h-full w-full fixed pointer-events-none z-40">
         {#each Popper.confettis as confetti}
             <div class="absolute" style="top: {confetti.y}px; left: {confetti.x}px;">

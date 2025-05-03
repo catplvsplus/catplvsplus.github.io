@@ -6,24 +6,35 @@
     import { blur, slide } from 'svelte/transition';
     import { cn, popConfetti } from '$lib/helpers/utils';
     import { onClickOutside, PressedKeys } from 'runed';
-    import { beforeNavigate, goto } from '$app/navigation';
+    import { beforeNavigate, goto, pushState } from '$app/navigation';
     import Variables from '$lib/helpers/variables.svelte';
+    import { page } from '$app/state';
 
     let menu: HTMLDivElement = $state()!;
-    let menuOpen = $state(false);
+    let menuOpen = $derived(!!page.state.openNav);
 
     const keys = new PressedKeys();
 
     onClickOutside(() => menu, () => menuOpen = false);
 
     const isEscapePressed = $derived(keys.has("Escape"));
+
     $effect(() => {
         if (isEscapePressed && menuOpen) {
             menuOpen = false
         }
+
+        if (!menuOpen && page.state.openNav) {
+            history.back();
+        }
     });
 
     beforeNavigate(() => menuOpen = false);
+
+    function openNav() {
+        menuOpen = true;
+        pushState('', { openNav: true });
+    }
 
     function linkClicked(e: MouseEvent, link: string) {
         e.preventDefault();
@@ -91,7 +102,7 @@
                         <Moon/>
                     {/if}
                 </Button>
-                <Button size="icon" onclick={() => menuOpen = !menuOpen}>
+                <Button size="icon" onclick={openNav}>
                     {#if menuOpen}
                         <X/>
                     {:else}

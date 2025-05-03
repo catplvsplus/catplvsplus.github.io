@@ -56,3 +56,5 @@ export interface SocialLink {
     url: string;
     icon?: any;
 }
+
+export type SettingsPropertyValue = 'enabled'|'disabled'|'auto';

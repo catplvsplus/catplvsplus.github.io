@@ -3,6 +3,7 @@
     import { Button } from '$lib/components/ui/button/index.js';
     import { Globe, Settings } from '@lucide/svelte';
     import { socialLinks } from '$lib/helpers/constants.js';
+    import { pushState } from '$app/navigation';
 </script>
 
 <footer class="flex justify-center bg-border/80 px-5 py-10">
@@ -35,7 +36,12 @@
         </div>
         <div class="flex sm:flex-col flex-col-reverse items-center gap-5 w-full sm:w-fit">
             <p class="text-muted-foreground leading-10">Made with 🩷 by <a href="https://github.com/catplvsplus" target="_blank" class="text-primary font-semibold">@catplvsplus</a></p>
-            <Button class="w-full max-w-xs sm:w-fit" variant="secondary" title="Accessibility Settings">
+            <Button
+                class="w-full max-w-xs sm:w-fit"
+                variant="secondary"
+                title="Accessibility Settings"
+                onclick={() => pushState('', { openVisualEffectsSettings: true })}
+            >
                 <Settings/> <span>Visual Effects Settings</span>
             </Button>
         </div>

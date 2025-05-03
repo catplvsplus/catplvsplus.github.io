@@ -17,9 +17,9 @@ export class Variables {
     public reducedMotionQuery = new MediaQuery('(prefers-reduced-motion: reduce)', true);
     public reducedTransparencyQuery = new MediaQuery('(prefers-reduced-transparency: reduce)', true);
 
-    public reducedMotionStore: PersistedState<boolean|null> = new PersistedState('reduced-motion', null, { storage: 'local', syncTabs: true });
-    public reducedTransparencyStore: PersistedState<boolean|null> = new PersistedState('transparency', null, { storage: 'local', syncTabs: true });
-    public enableConfettiStore: PersistedState<boolean|null> = new PersistedState('enable-confetti', null, { storage: 'local', syncTabs: true });
+    public reducedMotionStore: PersistedState<boolean|0> = new PersistedState('reduced-motion', 0, { storage: 'local', syncTabs: true });
+    public reducedTransparencyStore: PersistedState<boolean|0> = new PersistedState('transparency', 0, { storage: 'local', syncTabs: true });
+    public enableConfettiStore: PersistedState<boolean|0> = new PersistedState('enable-confetti', 0, { storage: 'local', syncTabs: true });
     public songIdStore: PersistedState<SongOfTheDay> = new PersistedState('song-id', {
         id: Variables.getRandomSongId()!,
         savedAt: Date.now()
@@ -31,9 +31,9 @@ export class Variables {
     public repositories: IGithubRepo[]|null = $state(null);
     public busy: boolean = $state(false);
     public isMobile: boolean = $state(isMobile());
-    public reducedMotion: boolean = $derived(this.reducedMotionStore.current ?? this.reducedMotionQuery.current);
-    public transparency: boolean = $derived(this.reducedTransparencyStore.current ?? !this.reducedTransparencyQuery.current);
-    public enableConfetti: boolean = $derived(this.reducedMotion ? false : (this.enableConfettiStore.current ?? true));
+    public reducedMotion: boolean = $derived(this.reducedMotionStore.current !== 0 ? this.reducedMotionStore.current : this.reducedMotionQuery.current);
+    public transparency: boolean = $derived(this.reducedTransparencyStore.current !== 0 ? !this.reducedTransparencyStore.current : !this.reducedTransparencyQuery.current);
+    public enableConfetti: boolean = $derived(this.reducedMotion ? false : (this.enableConfettiStore.current !== 0 ? this.enableConfettiStore.current : true));
     public songId: string = $derived(this.songIdStore.current.id);
 
     public async fetch(): Promise<void> {

@@ -48,6 +48,12 @@ export const socialLinks: SocialLink[] = [
     }
 ];
 
+export const settingsSelectPropertyValues = [
+    { label: "Auto", value: "auto" },
+    { label: "Enabled", value: "enabled" },
+    { label: "Disabled", value: "disabled" }
+];
+
 export const favoriteSongIds: string[] = [
     '1dAKL41zeVDP8PiLJDsRQv',
     '0nyjSQaOraSpDDnadBJU49',
