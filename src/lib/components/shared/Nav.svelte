@@ -31,7 +31,12 @@
 
     beforeNavigate(() => menuOpen = false);
 
-    function openNav() {
+    function toggleNav() {
+        if (menuOpen) {
+            menuOpen = false;
+            return;
+        }
+
         menuOpen = true;
         pushState('', { openNav: true });
     }
@@ -102,7 +107,7 @@
                         <Moon/>
                     {/if}
                 </Button>
-                <Button size="icon" onclick={openNav}>
+                <Button size="icon" onclick={toggleNav}>
                     {#if menuOpen}
                         <X/>
                     {:else}
