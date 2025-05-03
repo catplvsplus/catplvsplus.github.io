@@ -30,9 +30,13 @@
     });
 
     function reset() {
-        Variables.reducedMotionStore.current = 0;
-        Variables.reducedTransparencyStore.current = 0;
-        Variables.enableConfettiStore.current = 0;
+        reducedTransparency = 'auto';
+        reducedMotion = 'auto';
+        confetti = 'auto';
+
+        Variables.reducedTransparencyStore.current = reducedTransparencyValue;
+        Variables.reducedMotionStore.current = reducedMotionValue;
+        Variables.enableConfettiStore.current = enableConfettiValue;
 
         toast("Applied default visual settings");
     }
