@@ -39,6 +39,17 @@
                     <Heart class="animate-float delay-700 size-32 absolute -rotate-[20deg] opacity-90 dark:opacity-80" style="right: -0.5%; top: -15%;"/>
                 </span>
             </ParallaxContainer>
+        {:else}
+            <div class={cn("absolute top-0 w-full h-full pointer-events-none z-10 left-1/2 !-translate-x-1/2 sm:max-w-full max-w-[85%] min-w-[360px]")}>
+                <span class="absolute top-0 left-0 -z-10">
+                    <KissingCat class="size-32 absolute rotate-[25deg] sm:top-[3%] sm:left-[-1.5%] top-10 -left-8"/>
+                </span>
+            </div>
+            <div class={cn("absolute top-0 w-full h-full pointer-events-none -z-10")}>
+                <span class="absolute top-0 right-0 -z-10">
+                    <Heart class="delay-700 size-32 absolute -rotate-[20deg] opacity-90 dark:opacity-80" style="right: -0.5%; top: -15%;"/>
+                </span>
+            </div>
         {/if}
     </div>
 </div>
