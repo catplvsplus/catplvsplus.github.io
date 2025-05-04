@@ -44,6 +44,7 @@
         Variables.reducedTransparencyStore.current = reducedTransparencyValue;
         Variables.reducedMotionStore.current = reducedMotionValue;
         Variables.enableConfettiStore.current = enableConfettiValue;
+        userPrefersMode.current = 'system';
 
         toast.info("Applied default visual settings");
     }
