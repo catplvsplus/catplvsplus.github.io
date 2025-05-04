@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import Popper, { type ConfettiOptions } from "$lib/helpers/popper.svelte";
-import type { SettingsPropertyValue } from '$lib/helpers/types';
+import type { ModeValues, SettingsPropertyValue } from '$lib/helpers/types';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -27,5 +27,21 @@ export function formatSettingsPropertyValue(value: string): boolean|0 {
 		case "enabled": return true;
 		case "disabled": return false;
 		default: return 0;
+	}
+}
+
+export function getDarkmodeSettingsPropertyValue(value: ModeValues): SettingsPropertyValue {
+	switch (value) {
+		case 'dark': return 'enabled';
+		case 'light': return 'disabled';
+		default: return 'auto';
+	}
+}
+
+export  function formatDarkmodePropertyValue(value: string): ModeValues {
+	switch (value) {
+		case "enabled": return 'dark';
+		case "disabled": return 'light';
+		default: return 'system';
 	}
 }

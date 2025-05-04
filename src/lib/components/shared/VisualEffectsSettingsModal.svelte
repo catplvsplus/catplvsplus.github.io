@@ -6,18 +6,25 @@
         Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle
     } from '$lib/components/ui/dialog/index.js';
     import { Label } from '$lib/components/ui/label';
-    import { GalleryHorizontalEnd, PartyPopper, Sparkles } from '@lucide/svelte';
+    import { GalleryHorizontalEnd, Palette, PartyPopper, Sparkles } from '@lucide/svelte';
     import { Select, SelectContent, SelectItem, SelectTrigger } from '$lib/components/ui/select/index.js';
     import Variables from '$lib/helpers/variables.svelte';
-    import { formatSettingsPropertyValue, getSettingsPropertyValue } from '$lib/helpers/utils';
+    import {
+        formatDarkmodePropertyValue,
+        formatSettingsPropertyValue,
+        getDarkmodeSettingsPropertyValue,
+        getSettingsPropertyValue
+    } from '$lib/helpers/utils';
     import { settingsSelectPropertyValues } from '$lib/helpers/constants';
     import { Button } from '$lib/components/ui/button';
     import { toast } from 'svelte-sonner';
+    import { userPrefersMode } from 'mode-watcher';
 
     let isOpen = $derived(!!page.state.openVisualEffectsSettings);
     let reducedTransparency = $state(getSettingsPropertyValue(Variables.reducedTransparencyStore.current));
     let reducedMotion = $state(getSettingsPropertyValue(Variables.reducedMotionStore.current));
     let confetti = $state(getSettingsPropertyValue(Variables.enableConfettiStore.current));
+    let darkmode = $state(getDarkmodeSettingsPropertyValue(userPrefersMode.current))
 
     let reducedTransparencyValue = $derived(formatSettingsPropertyValue(reducedTransparency));
     let reducedMotionValue = $derived(formatSettingsPropertyValue(reducedMotion));
@@ -45,6 +52,7 @@
         Variables.reducedTransparencyStore.current = reducedTransparencyValue;
         Variables.reducedMotionStore.current = reducedMotionValue;
         Variables.enableConfettiStore.current = enableConfettiValue;
+        userPrefersMode.current = formatDarkmodePropertyValue(darkmode);
 
         toast.info("Visual settings has been applied");
     }
@@ -54,6 +62,19 @@
 
 {#snippet VisualSettings()}
     <div class="flex flex-col gap-3 w-full">
+        <div class="flex justify-between items-center w-full">
+            <Label class="flex items-center gap-2" for="reduced-transparency-option"><Palette class="shrink-0 text-primary" size="1.5em"/> Dark Mode</Label>
+            <Select type="single" bind:value={darkmode} onValueChange={updateSettings}>
+                <SelectTrigger id="reduced-transparency-option" class="w-fit gap-2 capitalize">
+                    {getDarkmodeSettingsPropertyValue(userPrefersMode.current)}
+                </SelectTrigger>
+                <SelectContent>
+                    {#each settingsSelectPropertyValues as { label, value }}
+                        <SelectItem {value} {label}>{label}</SelectItem>
+                    {/each}
+                </SelectContent>
+            </Select>
+        </div>
         <div class="flex justify-between items-center w-full">
             <Label class="flex items-center gap-2" for="reduced-transparency-option"><Sparkles class="shrink-0 text-primary" size="1.5em"/>Reduced Transparecy</Label>
             <Select type="single" bind:value={reducedTransparency} onValueChange={updateSettings}>
