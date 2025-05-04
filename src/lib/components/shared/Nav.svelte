@@ -9,6 +9,7 @@
     import { beforeNavigate, goto, pushState } from '$app/navigation';
     import Variables from '$lib/helpers/variables.svelte';
     import { page } from '$app/state';
+    import { tick } from 'svelte';
 
     let menu: HTMLDivElement = $state()!;
     let menuOpen = $derived(!!page.state.openNav);
@@ -26,7 +27,9 @@
     });
 
     $effect(() => {
-        if (!menuOpen && page.state.openNav) history.back();
+        if (!menuOpen && page.state.openNav) {
+            history.back();
+        }
     });
 
     beforeNavigate(() => menuOpen = false);
@@ -41,22 +44,21 @@
         pushState('', { openNav: true });
     }
 
-    function linkClicked(e: MouseEvent, link: string) {
+    async function linkClicked(e: MouseEvent, link: string) {
         e.preventDefault();
-
-        menuOpen = false;
 
         const currentPath = window.location.pathname;
         const linkWithoutHash = link.split('#')[0];
         const hash = link.split('#')[1];
 
-        console.log(currentPath, linkWithoutHash, hash);
+        if (currentPath !== linkWithoutHash) return goto(link);
 
-        if (currentPath !== linkWithoutHash) {
-            return goto(link);
+        if (page.state.openNav) {
+            history.back();
+            await tick();
         }
 
-        if (hash) document.getElementById(hash)?.scrollIntoView();
+        if (hash) setTimeout(() => document.getElementById(hash)?.scrollIntoView(), 100);
     }
 </script>
 
