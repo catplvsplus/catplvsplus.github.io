@@ -38,7 +38,15 @@
         Variables.reducedMotionStore.current = reducedMotionValue;
         Variables.enableConfettiStore.current = enableConfettiValue;
 
-        toast("Applied default visual settings");
+        toast.info("Applied default visual settings");
+    }
+
+    function updateSettings() {
+        Variables.reducedTransparencyStore.current = reducedTransparencyValue;
+        Variables.reducedMotionStore.current = reducedMotionValue;
+        Variables.enableConfettiStore.current = enableConfettiValue;
+
+        toast.info("Visual settings has been applied");
     }
 
     const isDesktop = new MediaQuery("(min-width: 640px)", true);
@@ -47,8 +55,8 @@
 {#snippet VisualSettings()}
     <div class="flex flex-col gap-3 w-full">
         <div class="flex justify-between items-center w-full">
-            <Label class="flex items-center gap-2" for="reduced-transparency-option"><Sparkles class="shrink-0 text-primary" size="1.5em"/>Reduced Transparecy Effects</Label>
-            <Select type="single" bind:value={reducedTransparency} onValueChange={() => Variables.reducedTransparencyStore.current = reducedTransparencyValue}>
+            <Label class="flex items-center gap-2" for="reduced-transparency-option"><Sparkles class="shrink-0 text-primary" size="1.5em"/>Reduced Transparecy</Label>
+            <Select type="single" bind:value={reducedTransparency} onValueChange={updateSettings}>
                 <SelectTrigger id="reduced-transparency-option" class="w-fit gap-2 capitalize">
                     {getSettingsPropertyValue(Variables.reducedTransparencyStore.current)}
                 </SelectTrigger>
@@ -61,7 +69,7 @@
         </div>
         <div class="flex justify-between items-center w-full">
             <Label class="flex items-center gap-2" for="reduced-motion-option"><GalleryHorizontalEnd class="shrink-0 text-primary" size="1.5em"/>Reduced Motion</Label>
-            <Select type="single" bind:value={reducedMotion} onValueChange={() => Variables.reducedMotionStore.current = reducedMotionValue}>
+            <Select type="single" bind:value={reducedMotion} onValueChange={updateSettings}>
                 <SelectTrigger id="reduced-motion-option" class="w-fit gap-2 capitalize">
                     {getSettingsPropertyValue(Variables.reducedMotionStore.current)}
                 </SelectTrigger>
@@ -75,7 +83,7 @@
         {#if !Variables.isMobile}
             <div class="flex justify-between items-center w-full">
                 <Label class="flex items-center gap-2" for="enable-confetti-option"><PartyPopper class="shrink-0 text-primary" size="1.5em"/> Pop Confetti</Label>
-                <Select type="single" disabled={Variables.reducedMotion} bind:value={confetti} onValueChange={() => Variables.enableConfettiStore.current = enableConfettiValue}>
+                <Select type="single" disabled={Variables.reducedMotion} bind:value={confetti} onValueChange={updateSettings}>
                     <SelectTrigger id="enable-confetti-option" class="w-fit gap-2 capitalize">
                         {getSettingsPropertyValue(Variables.enableConfettiStore.current)}
                     </SelectTrigger>
@@ -104,7 +112,7 @@
             {@render VisualSettings()}
             <DialogFooter>
                 <Button variant="ghost" onclick={() => reset()}>Reset</Button>
-                <Button variant="secondary" onclick={() => isOpen = false}>Close</Button>
+                <Button variant="secondary" onclick={() => isOpen = false}>Done</Button>
             </DialogFooter>
         </DialogContent>
     </Dialog>
@@ -120,7 +128,7 @@
             </div>
             <DrawerFooter>
                 <Button variant="secondary" onclick={() => reset()}>Reset</Button>
-                <Button variant="default" onclick={() => isOpen = false}>Close</Button>
+                <Button variant="default" onclick={() => isOpen = false}>Done</Button>
             </DrawerFooter>
         </DrawerContent>
     </Drawer>

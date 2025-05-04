@@ -21,12 +21,12 @@
 
     $effect(() => {
         if (isEscapePressed && menuOpen) {
-            menuOpen = false
+            menuOpen = false;
         }
+    });
 
-        if (!menuOpen && page.state.openNav) {
-            history.back();
-        }
+    $effect(() => {
+        if (!menuOpen && page.state.openNav) history.back();
     });
 
     beforeNavigate(() => menuOpen = false);

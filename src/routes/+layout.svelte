@@ -10,6 +10,7 @@
 	import { toast } from 'svelte-sonner';
 	import ConfettiPopper from '../lib/components/shared/ConfettiPopper.svelte';
 	import VisualEffectsSettingsModal from '$lib/components/shared/VisualEffectsSettingsModal.svelte';
+	import Footer from '$lib/components/shared/Footer.svelte';
 
 	let { children } = $props();
 
@@ -50,4 +51,5 @@
 
 <div class={cn("w-full h-full pt-[6.125rem]")}>
 	{@render children()}
+	<Footer/>
 </div>

@@ -23,6 +23,7 @@
             onfocus={null}
             onclick={() => {
                 document.querySelector("#about")?.scrollIntoView();
+                // TODO: Remove info
                 toast.info("This page is still under development and will be updated soon 😉!");
             }}
         >
