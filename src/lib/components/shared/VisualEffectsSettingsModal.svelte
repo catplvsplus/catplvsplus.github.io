@@ -63,9 +63,9 @@
 {#snippet VisualSettings()}
     <div class="flex flex-col gap-3 w-full">
         <div class="flex justify-between items-center w-full">
-            <Label class="flex items-center gap-2" for="reduced-transparency-option"><Palette class="shrink-0 text-primary" size="1.5em"/> Dark Mode</Label>
+            <Label class="flex items-center gap-2" for="darkmode-option"><Palette class="shrink-0 text-primary" size="1.5em"/> Dark Mode</Label>
             <Select type="single" bind:value={darkmode} onValueChange={updateSettings}>
-                <SelectTrigger id="reduced-transparency-option" class="w-fit gap-2 capitalize">
+                <SelectTrigger id="darkmode-option" class="w-fit gap-2 capitalize">
                     {getDarkmodeSettingsPropertyValue(userPrefersMode.current)}
                 </SelectTrigger>
                 <SelectContent>
