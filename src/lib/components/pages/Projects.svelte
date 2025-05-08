@@ -42,14 +42,6 @@
                                     <span>{repository.license.spdx_id}</span>
                                 </Badge>
                             {/if}
-                            {#if repository.forks_count}
-                                <Badge variant="secondary" class=" !bg-pink-500/10 text-rose-400 font-bold">
-                                    <a href="{repository.html_url}/forks" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1">
-                                        <GitFork class="size-4"/>
-                                        <span>{repository.forks_count.toLocaleString()}</span>
-                                    </a>
-                                </Badge>
-                            {/if}
                             <Badge class="flex items-center gap-1 font-bold" style="background-color: {background}; color: {foreground};">
                                 <Circle class="size-3" fill="currentColor"/>
                                 <span>{repository.language}</span>
