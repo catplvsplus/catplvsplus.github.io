@@ -35,10 +35,10 @@
 	},
 	"dependencies": {
 		"@icons-pack/svelte-simple-icons": "^5.0.0",
+		"color2k": "^2.0.3",
 		"is-mobile": "^5.0.0",
 		"parallax-js": "^3.1.0",
 		"runed": "^0.26.0",
-		"svelte-confetti": "^2.3.1",
-		"svelte-inview": "^4.0.4"
+		"svelte-confetti": "^2.3.1"
 	}
 }

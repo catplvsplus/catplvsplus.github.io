@@ -1,6 +1,26 @@
 import type Parallax from 'parallax-js';
-import type { SocialLink } from '$lib/helpers/types';
-import { SiBluesky, SiDiscord, SiGithub, SiInstagram, SiSpotify, SiTiktok } from '@icons-pack/svelte-simple-icons';
+import type { SocialLink, TechnicalSkill } from '$lib/helpers/types';
+import {
+    SiBluesky,
+    SiCss,
+    SiDiscord,
+    SiExpress,
+    SiGit,
+    SiGithub,
+    SiGmail,
+    SiHtml5,
+    SiInstagram,
+    SiJavascript,
+    SiNodedotjs,
+    SiPostgresql,
+    SiReact,
+    SiSass,
+    SiShadcnui,
+    SiSvelte,
+    SiTailwindcss,
+    SiTiktok,
+    SiTypescript
+} from '@icons-pack/svelte-simple-icons';
 
 export const parallaxOptions: Parallax.ParallaxOptions = {
     calibrateX: false,
@@ -42,9 +62,77 @@ export const socialLinks: SocialLink[] = [
         icon: SiTiktok
     },
     {
-        name: "Spotify",
-        url: "https://open.spotify.com/user/31o67p6spk3qfxqsar6gmcszglqi?si=075b4fc19a0e4b74",
-        icon: SiSpotify
+        name: "Email",
+        url: "email:catplvsplus@gmail.com",
+        icon: SiGmail
+    }
+];
+
+export const technicakSkills: TechnicalSkill[] = [
+    {
+        label: "TypeScript",
+        icon: SiTypescript,
+        color: "#3178C6"
+    },
+    {
+        label: "JavaScript",
+        icon: SiJavascript,
+        color: "#c2af1c"
+    },
+    {
+        label: "Svelte",
+        icon: SiSvelte,
+        color: "#FF3E00"
+    },
+    {
+        label: "React",
+        icon: SiReact,
+        color: "#4aabc5"
+    },
+    {
+        label: "TailwindCSS",
+        icon: SiTailwindcss,
+        color: "#38B2AC"
+    },
+    {
+        label: "Shadcn",
+        icon: SiShadcnui,
+        color: "#888888"
+    },
+    {
+        label: "HTML 5",
+        icon: SiHtml5,
+        color: "#E34F26"
+    },
+    {
+        label: "CSS",
+        icon: SiCss,
+        color: "#8d65ec"
+    },
+    {
+        label: "Sass",
+        icon: SiSass,
+        color: "#CC6699"
+    },
+    {
+        label: "Git",
+        icon: SiGit,
+        color: "#F34F29"
+    },
+    {
+        label: "NodeJS",
+        icon: SiNodedotjs,
+        color: "#339933"
+    },
+    {
+        label: "PostgreSQL",
+        icon: SiPostgresql,
+        color: "#4283b7"
+    },
+    {
+        label: "ExpressJS",
+        icon: SiExpress,
+        color: "#569d3a"
     }
 ];
 

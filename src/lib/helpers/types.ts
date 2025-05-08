@@ -59,3 +59,9 @@ export interface SocialLink {
 
 export type SettingsPropertyValue = 'enabled'|'disabled'|'auto';
 export type ModeValues = 'dark'|'light'|'system';
+
+export interface TechnicalSkill {
+    label: string;
+    color: string;
+    icon?: any;
+}
