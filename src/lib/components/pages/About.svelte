@@ -5,9 +5,10 @@
     import SongOfTheDayCard from '$lib/components/shared/SongOfTheDayCard.svelte';
     import StatsCard from '$lib/components/shared/StatsCard.svelte';
     import { Badge } from '$lib/components/ui/badge';
-    import { transparentize } from 'color2k';
+    import { darken, lighten, transparentize } from 'color2k';
     import { technicakSkills } from '$lib/helpers/constants';
     import { popConfetti } from '$lib/helpers/utils';
+    import { mode } from 'mode-watcher';
 </script>
 
 <div class="flex flex-col items-center gap-5 p-5 min-h-96" id="about">
@@ -59,10 +60,11 @@
         <div class="flex flex-wrap gap-1">
             {#each technicakSkills as skill}
                 {@const background = transparentize(skill.color, 0.8)}
+                {@const color = mode.current === 'dark' ? lighten(skill.color, 0.1) : darken(skill.color, 0.1)}
                 <Badge
-                        class="flex items-center gap-1 font-bold" style="background-color: {background}; color: {skill.color};"
+                        class="flex items-center gap-1 font-bold" style="background-color: {background}; color: {color};"
                         onclick={e => popConfetti(e, {
-                            colors: [background, skill.color],
+                            colors: [background, skill.color, color],
                             amount: 10
                         })}
                 >

@@ -39,6 +39,7 @@ export interface IGithubRepo {
     updated_at: string;
     homepage: string;
     stargazers_count: number;
+    forks_count: number;
     watchers_count: number;
     language: string;
     archived: boolean;
@@ -47,6 +48,7 @@ export interface IGithubRepo {
         name: string;
         spdx_id: string;
     };
+    topics: string[];
 }
 
 export interface SongOfTheDay { id: string; savedAt: number; }

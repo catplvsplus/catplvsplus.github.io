@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import Popper, { type ConfettiOptions } from "$lib/helpers/popper.svelte";
 import type { ModeValues, SettingsPropertyValue } from '$lib/helpers/types';
+import { languages } from '$lib/helpers/languages';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -38,10 +39,17 @@ export function getDarkmodeSettingsPropertyValue(value: ModeValues): SettingsPro
 	}
 }
 
-export  function formatDarkmodePropertyValue(value: string): ModeValues {
+export function formatDarkmodePropertyValue(value: string): ModeValues {
 	switch (value) {
 		case "enabled": return 'dark';
 		case "disabled": return 'light';
 		default: return 'system';
 	}
+}
+
+export function findLanguageColor(language: string): string|null {
+	const langs = Object.entries(languages);
+	const lang = langs.find(([key]) => key.toLowerCase() === language.toLowerCase());
+
+	return lang ? lang[1] : null;
 }
