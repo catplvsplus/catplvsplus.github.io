@@ -9,6 +9,7 @@
     import Variables from '$lib/helpers/variables.svelte';
     import Cupcake from '$lib/components/svg/Cupcake.svelte';
     import SmilingCatWithHeartEyes from '$lib/components/svg/SmilingCatWithHeartEyes.svelte';
+    import { pushState } from '$app/navigation';
 
     Confetti;
 
@@ -48,7 +49,7 @@
     />
 {/snippet}
 
-<div class={cn("w-full h-[200%] min-h-fit pt-72 pb-40 flex justify-center items-start")}>
+<div class={cn("w-full h-[200%] min-h-[600px] pt-72 pb-40 flex justify-center items-start")}>
     <div class="sticky top-1/2 -translate-y-1/2 w-full max-w-screen-lg flex flex-col items-center gap-16 overflow-x-clip" bind:this={target}>
         {#if isInViewport.current}
             <div class="relative">
@@ -60,6 +61,12 @@
                 <span transition:blur={{ delay: 200, duration: 1000 }} onintroend={() => showConfetti = true} onoutroend={() => showConfetti = false}>
                     <Button
                         href="https://ko-fi.com/catplusplus"
+                        onclick={e => {
+                            e.preventDefault();
+                            pushState('', {
+                                openKofi: true
+                            });
+                        }}
                         onmouseover={e => popConfetti(e, {
                             colors: [
                                 'hsl(var(--primary))',
