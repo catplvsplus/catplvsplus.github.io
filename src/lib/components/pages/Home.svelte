@@ -26,6 +26,7 @@
                 // TODO: Remove info
                 toast.info("This page is still under development and will be updated soon 😉!");
             }}
+            class="rounded-xl"
         >
             Explore More
         </Button>
