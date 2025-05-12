@@ -6,6 +6,7 @@
     import Variables from '$lib/helpers/variables.svelte';
     import ParallaxContainer from '$lib/components/shared/ParallaxContainer.svelte';
     import { toast } from 'svelte-sonner';
+    import { confettiColors } from '$lib/helpers/constants';
 </script>
 
 <div class="sm:h-1/2 h-3/4 min-h-96 flex justify-center items-center relative overflow-x-clip" id="home">
@@ -16,7 +17,7 @@
         </p>
         <Button
             onmouseover={e => popConfetti(e, {
-                colors: ['hsl(var(--primary))'],
+                colors: ['hsl(var(--primary))', ...confettiColors],
                 amount: 10,
                 delay: 0
             })}
@@ -26,7 +27,7 @@
                 // TODO: Remove info
                 toast.info("This page is still under development and will be updated soon 😉!");
             }}
-            class="rounded-xl"
+            class="rounded-xl hover:scale-[1.03] active:scale-95 transition-transform duration-300"
         >
             Explore More
         </Button>

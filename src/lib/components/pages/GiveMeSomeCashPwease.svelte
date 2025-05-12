@@ -10,6 +10,7 @@
     import Cupcake from '$lib/components/svg/Cupcake.svelte';
     import SmilingCatWithHeartEyes from '$lib/components/svg/SmilingCatWithHeartEyes.svelte';
     import { pushState } from '$app/navigation';
+    import { confettiColors } from '$lib/helpers/constants';
 
     Confetti;
 
@@ -32,13 +33,7 @@
 
 {#snippet InlineConfetti()}
     <Confetti
-        colorArray={[
-            'hsl(var(--primary))',
-            '#ce46b3',
-            '#875fff',
-            '#1dd8bc',
-            '#ff77c3',
-        ]}
+        colorArray={['hsl(var(--primary))', ...confettiColors]}
         delay={[0, Math.random() * 1000]}
         x={[-0.5, 0.5]}
         y={[-0.5, 0.5]}
@@ -68,16 +63,10 @@
                             });
                         }}
                         onmouseover={e => popConfetti(e, {
-                            colors: [
-                                'hsl(var(--primary))',
-                                '#ce46b3',
-                                '#875fff',
-                                '#1dd8bc',
-                                '#ff77c3',
-                            ],
+                            colors: ['hsl(var(--primary))', ...confettiColors],
                             amount: 10
                         })}
-                        class="donate-btn rounded-xl relative sm:h-12 sm:px-6 px-5 sm:text-lg font-bold transition-all hover:scale-105 active:scale-95 hover:bg-primary [&_svg]:size-5 hover:bg-gradient-to-br hover:from-primary hover:to-primary/80"
+                        class="donate-btn rounded-xl relative sm:h-12 sm:px-6 px-5 sm:text-lg font-bold transition-all duration-300 hover:scale-105 active:scale-95 hover:bg-primary [&_svg]:size-5 hover:bg-gradient-to-br hover:from-primary hover:to-primary/80"
                     >
                         <span class="flex items-center gap-2 relative z-10">
                             <SiKofi/>

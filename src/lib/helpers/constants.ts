@@ -35,6 +35,8 @@ export const parallaxOptions: Parallax.ParallaxOptions = {
     frictionY: 0.1
 };
 
+export const confettiColors: string[] = ['#ce46b3', '#875fff', '#1dd8bc', '#ff77c3'];
+
 export const socialLinks: SocialLink[] = [
     {
         name: "Github",
