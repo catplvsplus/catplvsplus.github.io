@@ -17,9 +17,7 @@
     let target: HTMLDivElement = $state()!;
     let showConfetti: boolean = $state(false);
 
-    const isInViewport = new IsInViewport(() => target, {
-        threshold: 1
-    });
+    const isInViewport = new IsInViewport(() => target);
 </script>
 
 <style lang="scss">

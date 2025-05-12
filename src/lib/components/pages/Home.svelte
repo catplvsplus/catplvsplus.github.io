@@ -5,7 +5,6 @@
     import KissingCat from '$lib/components/svg/KissingCat.svelte';
     import Variables from '$lib/helpers/variables.svelte';
     import ParallaxContainer from '$lib/components/shared/ParallaxContainer.svelte';
-    import { toast } from 'svelte-sonner';
     import { confettiColors } from '$lib/helpers/constants';
 </script>
 
@@ -22,11 +21,7 @@
                 delay: 0
             })}
             onfocus={null}
-            onclick={() => {
-                document.querySelector("#about")?.scrollIntoView();
-                // TODO: Remove info
-                toast.info("This page is still under development and will be updated soon 😉!");
-            }}
+            onclick={() => document.querySelector("#about")?.scrollIntoView()}
             class="rounded-xl hover:scale-[1.03] active:scale-95 transition-transform duration-300"
         >
             Explore More

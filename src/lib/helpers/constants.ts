@@ -22,6 +22,8 @@ import {
     SiTypescript
 } from '@icons-pack/svelte-simple-icons';
 
+export const globalUsername = "catplvsplus";
+
 export const parallaxOptions: Parallax.ParallaxOptions = {
     calibrateX: false,
     calibrateY: true,
@@ -65,7 +67,7 @@ export const socialLinks: SocialLink[] = [
     },
     {
         name: "Email",
-        url: "email:catplvsplus@gmail.com",
+        url: "mailto:catplvsplus@gmail.com",
         icon: SiGmail
     }
 ];

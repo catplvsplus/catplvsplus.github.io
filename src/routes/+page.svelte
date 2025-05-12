@@ -3,6 +3,7 @@
     import About from '$lib/components/pages/About.svelte';
     import Projects from '$lib/components/pages/Projects.svelte';
     import GiveMeSomeCashPwease from '$lib/components/pages/GiveMeSomeCashPwease.svelte';
+    import Contact from '$lib/components/pages/Contact.svelte';
 </script>
 
 <svelte:head>
@@ -13,3 +14,4 @@
 <About/>
 <Projects/>
 <GiveMeSomeCashPwease/>
+<Contact/>
