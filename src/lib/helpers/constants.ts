@@ -47,7 +47,7 @@ export const socialLinks: SocialLink[] = [
     },
     {
         name: "Discord",
-        url: "https://discord.com/users/923444378951905340",
+        url: "https://discord.com/users/1368215735473799347",
         icon: SiDiscord
     },
     {

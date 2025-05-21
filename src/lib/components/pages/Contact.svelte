@@ -1,7 +1,7 @@
 <script lang="ts">
     import { globalUsername, socialLinks } from '$lib/helpers/constants';
     import { Mail } from '@lucide/svelte';
-    import { SiGithub, SiInstagram } from '@icons-pack/svelte-simple-icons';
+    import { SiGithub, SiDiscord } from '@icons-pack/svelte-simple-icons';
     import { IsInViewport } from 'runed';
     import { fly } from 'svelte/transition';
     import Variables from '$lib/helpers/variables.svelte';
@@ -38,7 +38,7 @@
             {#if isInViewport.current}
                 {@render ContactLink(email, `mailto:${email}`, Mail)}
                 {@render ContactLink(`@${globalUsername}`, socialLinks.find(s => s.name === "Github")?.url ?? "", SiGithub)}
-                {@render ContactLink(`@${globalUsername}`, socialLinks.find(s => s.name === "Instagram")?.url ?? "", SiInstagram)}
+                {@render ContactLink(`@bvtterswt`, socialLinks.find(s => s.name === "Discord")?.url ?? "", SiDiscord)}
             {/if}
         </div>
     </div>
