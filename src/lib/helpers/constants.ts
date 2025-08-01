@@ -2,9 +2,7 @@ import type Parallax from 'parallax-js';
 import type { SocialLink, TechnicalSkill } from '$lib/helpers/types';
 import {
     SiBluesky,
-    SiCss,
-    SiDiscord,
-    SiExpress,
+    SiCss, SiExpress,
     SiGit,
     SiGithub,
     SiGmail,
@@ -45,11 +43,11 @@ export const socialLinks: SocialLink[] = [
         url: "https://github.com/catplvsplus",
         icon: SiGithub
     },
-    {
-        name: "Discord",
-        url: "https://discord.com/users/1368215735473799347",
-        icon: SiDiscord
-    },
+    // {
+    //     name: "Discord",
+    //     url: "https://discord.com/users/???",
+    //     icon: SiDiscord
+    // },
     {
         name: "Instagram",
         url: "https://instagram.com/catplvsplus",
