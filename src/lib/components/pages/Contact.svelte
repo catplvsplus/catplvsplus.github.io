@@ -38,7 +38,7 @@
             {#if isInViewport.current}
                 {@render ContactLink(email, `mailto:${email}`, Mail)}
                 {@render ContactLink(`@${globalUsername}`, socialLinks.find(s => s.name === "Github")?.url ?? "", SiGithub)}
-                <!-- {@render ContactLink(`@bvtterswt`, socialLinks.find(s => s.name === "Discord")?.url ?? "", SiDiscord)} -->
+                {@render ContactLink(`@znn.x_x`, socialLinks.find(s => s.name === "Discord")?.url ?? "", SiDiscord)}
             {/if}
         </div>
     </div>

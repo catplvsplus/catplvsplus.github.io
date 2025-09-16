@@ -17,6 +17,7 @@ import {
     SiSvelte,
     SiTailwindcss,
     SiTiktok,
+    SiDiscord,
     SiTypescript
 } from '@icons-pack/svelte-simple-icons';
 
@@ -43,11 +44,11 @@ export const socialLinks: SocialLink[] = [
         url: "https://github.com/catplvsplus",
         icon: SiGithub
     },
-    // {
-    //     name: "Discord",
-    //     url: "https://discord.com/users/???",
-    //     icon: SiDiscord
-    // },
+    {
+        name: "Discord",
+        url: "https://discord.com/users/1368215145880227931",
+        icon: SiDiscord
+    },
     {
         name: "Instagram",
         url: "https://instagram.com/catplvsplus",
