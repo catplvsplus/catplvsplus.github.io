@@ -21,7 +21,8 @@ import {
     SiTypescript,
     SiMysql,
     SiPrisma,
-    SiPython
+    SiPython,
+    SiGnubash
 } from '@icons-pack/svelte-simple-icons';
 
 export const globalUsername = "catplvsplus";
@@ -101,6 +102,11 @@ export const technicakSkills: TechnicalSkill[] = [
         color: "#4aabc5"
     },
     {
+        label: "ExpressJS",
+        icon: SiExpress,
+        color: "#569d3a"
+    },
+    {
         label: "TailwindCSS",
         icon: SiTailwindcss,
         color: "#38B2AC"
@@ -151,9 +157,9 @@ export const technicakSkills: TechnicalSkill[] = [
         color: '#16a394'
     },
     {
-        label: "ExpressJS",
-        icon: SiExpress,
-        color: "#569d3a"
+        label: 'Bash',
+        icon: SiGnubash,
+        color: '#7d98a4'
     }
 ];
 
