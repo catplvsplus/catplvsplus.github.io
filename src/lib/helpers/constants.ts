@@ -18,7 +18,10 @@ import {
     SiTailwindcss,
     SiTiktok,
     SiDiscord,
-    SiTypescript
+    SiTypescript,
+    SiMysql,
+    SiPrisma,
+    SiPython
 } from '@icons-pack/svelte-simple-icons';
 
 export const globalUsername = "catplvsplus";
@@ -83,6 +86,11 @@ export const technicakSkills: TechnicalSkill[] = [
         color: "#c2af1c"
     },
     {
+        label: "Python",
+        icon: SiPython,
+        color: "#d2ab29"
+    },
+    {
         label: "Svelte",
         icon: SiSvelte,
         color: "#FF3E00"
@@ -131,6 +139,16 @@ export const technicakSkills: TechnicalSkill[] = [
         label: "PostgreSQL",
         icon: SiPostgresql,
         color: "#4283b7"
+    },
+    {
+        label: "MySQL",
+        icon: SiMysql,
+        color: "#00758F"
+    },
+    {
+        label: 'Prisma',
+        icon: SiPrisma,
+        color: '#16a394'
     },
     {
         label: "ExpressJS",
