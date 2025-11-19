@@ -3,17 +3,15 @@
     import { MediaQuery } from 'svelte/reactivity';
     import { Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle } from '$lib/components/ui/drawer/index.js';
     import {
-        Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle
+      Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle
     } from '$lib/components/ui/dialog/index.js';
     import { Label } from '$lib/components/ui/label';
     import { GalleryHorizontalEnd, Palette, PartyPopper, Sparkles } from '@lucide/svelte';
     import { Select, SelectContent, SelectItem, SelectTrigger } from '$lib/components/ui/select/index.js';
     import Variables from '$lib/helpers/variables.svelte';
     import {
-        formatDarkmodePropertyValue,
-        formatSettingsPropertyValue,
-        getDarkmodeSettingsPropertyValue,
-        getSettingsPropertyValue
+      formatSettingsPropertyValue,
+      getSettingsPropertyValue
     } from '$lib/helpers/utils';
     import { settingsSelectPropertyValues } from '$lib/helpers/constants';
     import { Button } from '$lib/components/ui/button';
@@ -24,7 +22,7 @@
     let reducedTransparency = $state(getSettingsPropertyValue(Variables.reducedTransparencyStore.current));
     let reducedMotion = $state(getSettingsPropertyValue(Variables.reducedMotionStore.current));
     let confetti = $state(getSettingsPropertyValue(Variables.enableConfettiStore.current));
-    let darkmode = $state(getDarkmodeSettingsPropertyValue(userPrefersMode.current))
+    let theme = $state(userPrefersMode.current);
 
     let reducedTransparencyValue = $derived(formatSettingsPropertyValue(reducedTransparency));
     let reducedMotionValue = $derived(formatSettingsPropertyValue(reducedMotion));
@@ -53,7 +51,7 @@
         Variables.reducedTransparencyStore.current = reducedTransparencyValue;
         Variables.reducedMotionStore.current = reducedMotionValue;
         Variables.enableConfettiStore.current = enableConfettiValue;
-        userPrefersMode.current = formatDarkmodePropertyValue(darkmode);
+        userPrefersMode.current = theme;
 
         toast.info("Visual settings has been applied");
     }
@@ -64,15 +62,15 @@
 {#snippet VisualSettings()}
     <div class="flex flex-col gap-3 w-full">
         <div class="flex justify-between items-center w-full">
-            <Label class="flex items-center gap-2" for="darkmode-option"><Palette class="shrink-0 text-primary" size="1.5em"/> Dark Mode</Label>
-            <Select type="single" bind:value={darkmode} onValueChange={updateSettings}>
-                <SelectTrigger id="darkmode-option" class="w-fit gap-2 capitalize">
-                    {getDarkmodeSettingsPropertyValue(userPrefersMode.current)}
+            <Label class="flex items-center gap-2" for="theme-option"><Palette class="shrink-0 text-primary" size="1.5em"/>Theme</Label>
+            <Select type="single" bind:value={theme} onValueChange={updateSettings}>
+                <SelectTrigger id="theme-option" class="w-fit gap-2 capitalize">
+                    {userPrefersMode.current}
                 </SelectTrigger>
                 <SelectContent>
-                    {#each settingsSelectPropertyValues as { label, value }}
-                        <SelectItem {value} {label}>{label}</SelectItem>
-                    {/each}
+                    <SelectItem value="system" label="System">System</SelectItem>
+                    <SelectItem value="dark" label="Dark">Dark</SelectItem>
+                    <SelectItem value="light" label="Light">Light</SelectItem>
                 </SelectContent>
             </Select>
         </div>
