@@ -7,11 +7,11 @@ import { favoriteSongIds } from '$lib/helpers/constants';
 export class Variables {
     public static username: string = 'catplvsplus';
     public static repositories: string[] = [
-        'thenorthsolution/Reciple',
-        'thenorthsolution/prtyprnt',
+        'reciplejs/Reciple',
+        'catplvsplus/prtyprnt',
         'catplvsplus/lrclib.js',
-        'thenorthsolution/djs-utils',
-        'FalloutStudios/fallout-utility'
+        'catplvsplus/sourcebin.js',
+        'FalloutStudios/Axis'
     ];
 
     public reducedMotionQuery = new MediaQuery('(prefers-reduced-motion: reduce)', true);
