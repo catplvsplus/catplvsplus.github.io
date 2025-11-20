@@ -10,8 +10,9 @@ export class Variables {
         'reciplejs/Reciple',
         'catplvsplus/prtyprnt',
         'catplvsplus/lrclib.js',
-        'catplvsplus/sourcebin.js',
-        'FalloutStudios/Axis'
+        'FalloutStudios/sourcebin.js',
+        'FalloutStudios/Axis',
+        'FalloutStudios/HiddenPlayer'
     ];
 
     public reducedMotionQuery = new MediaQuery('(prefers-reduced-motion: reduce)', true);
