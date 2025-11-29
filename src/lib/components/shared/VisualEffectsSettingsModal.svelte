@@ -22,7 +22,6 @@
     let reducedTransparency = $state(getSettingsPropertyValue(Variables.reducedTransparencyStore.current));
     let reducedMotion = $state(getSettingsPropertyValue(Variables.reducedMotionStore.current));
     let confetti = $state(getSettingsPropertyValue(Variables.enableConfettiStore.current));
-    let theme = $state(userPrefersMode.current);
 
     let reducedTransparencyValue = $derived(formatSettingsPropertyValue(reducedTransparency));
     let reducedMotionValue = $derived(formatSettingsPropertyValue(reducedMotion));
@@ -51,7 +50,6 @@
         Variables.reducedTransparencyStore.current = reducedTransparencyValue;
         Variables.reducedMotionStore.current = reducedMotionValue;
         Variables.enableConfettiStore.current = enableConfettiValue;
-        userPrefersMode.current = theme;
 
         toast.info("Visual settings has been applied");
     }
@@ -63,7 +61,7 @@
     <div class="flex flex-col gap-3 w-full">
         <div class="flex justify-between items-center w-full">
             <Label class="flex items-center gap-2" for="theme-option"><Palette class="shrink-0 text-primary" size="1.5em"/>Theme</Label>
-            <Select type="single" bind:value={theme} onValueChange={updateSettings}>
+            <Select type="single" bind:value={userPrefersMode.current}>
                 <SelectTrigger id="theme-option" class="w-fit gap-2 capitalize">
                     {userPrefersMode.current}
                 </SelectTrigger>
