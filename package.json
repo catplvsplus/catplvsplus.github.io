@@ -34,9 +34,12 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"@fontsource-variable/inter": "^5.2.8",
+		"@fontsource/special-gothic-expanded-one": "^5.2.3",
 		"@icons-pack/svelte-simple-icons": "^5.0.0",
 		"color2k": "^2.0.3",
 		"is-mobile": "^5.0.0",
+		"ky": "^1.14.0",
 		"parallax-js": "^3.1.0",
 		"runed": "^0.26.0",
 		"svelte-confetti": "^2.3.1"

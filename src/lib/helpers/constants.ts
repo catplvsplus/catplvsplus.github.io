@@ -22,7 +22,8 @@ import {
     SiMysql,
     SiPrisma,
     SiPython,
-    SiGnubash
+    SiGnubash,
+    SiVite
 } from '@icons-pack/svelte-simple-icons';
 
 export const globalUsername = "catplvsplus";
@@ -115,6 +116,11 @@ export const technicakSkills: TechnicalSkill[] = [
         label: "Shadcn",
         icon: SiShadcnui,
         color: "#888888"
+    },
+    {
+        label: 'Vite',
+        icon: SiVite,
+        color: '#646cff'
     },
     {
         label: "HTML 5",

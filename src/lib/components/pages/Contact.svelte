@@ -14,9 +14,12 @@
 
 {#snippet ContactLink(label: string, url: string, icon: any,)}
     <div in:fly={{ delay: 200, duration: Variables.reducedMotion ? 0 : 1000, y: 20 }} class="flex items-center gap-2">
-        <span class="h-10 w-10 rounded-full flex items-center justify-center bg-primary text-primary-foreground">
-            <svelte:component this={icon}/>
-        </span>
+        {#if icon}
+            {@const Icon = icon}
+            <span class="h-10 w-10 rounded-full flex items-center justify-center bg-primary text-primary-foreground">
+                <Icon/>
+            </span>
+        {/if}
         <h3>
             <a href={url} target="_blank" rel="noopener noreferrer">
                 {label}

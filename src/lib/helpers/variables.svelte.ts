@@ -3,6 +3,7 @@ import type { IGithubRepo, IGithubUser, SongOfTheDay } from './types';
 import { PersistedState } from 'runed';
 import isMobile from 'is-mobile';
 import { favoriteSongIds } from '$lib/helpers/constants';
+import ky from 'ky';
 
 export class Variables {
     public static username: string = 'catplvsplus';
@@ -79,10 +80,8 @@ export class Variables {
         return current;
     }
 
-    public async fetchUserData(): Promise<IGithubUser|null> {
-        const response: IGithubUser|null = await fetch(`https://api.github.com/users/${Variables.username}`)
-            .then(async res => res.ok ? await res.json() : null)
-            .catch(() => null);
+    public async fetchUserData(): Promise<IGithubUser> {
+        const response = await ky.get<IGithubUser>(`https://api.github.com/users/${Variables.username}`).then(res => res.json());
 
         return this.user = response;
     }
@@ -91,12 +90,11 @@ export class Variables {
         return this.repositories = (await Promise.all(Variables.repositories.map(url => Variables.fetchRepository(url)))).filter(Boolean) as IGithubRepo[];
     }
 
-    public static async fetchRepository(url: string): Promise<IGithubRepo|null> {
-        const [owner, name] = url.split('/');
+    public static async fetchRepository(id: string): Promise<IGithubRepo> {
+        const [owner, name] = id.split('/');
 
-        return  await fetch(`https://api.github.com/repos/${owner}/${name}`)
-            .then(async res => res.ok ? await res.json() : null)
-            .catch(() => null);
+        return  await ky.get<IGithubRepo>(`https://api.github.com/repos/${owner}/${name}`)
+            .then(async res => await res.json());
     }
 
     public static getRandomSongId(excludeIds?: string[]): string|undefined {

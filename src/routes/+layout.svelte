@@ -1,4 +1,6 @@
 <script lang="ts">
+	import '@fontsource-variable/inter';
+	import '@fontsource/special-gothic-expanded-one';
 	import '$lib/styles/app.pcss';
 	import '$lib/styles/global.scss';
 	import { ModeWatcher } from 'mode-watcher';
@@ -39,8 +41,8 @@
     }
 
 	onMount(async () => {
-		await updateServiceWorker();
-		await Variables.fetch();
+		await Variables.fetch().catch(console.error);
+		await updateServiceWorker().catch(console.error);
 	});
 </script>
 

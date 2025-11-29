@@ -1,8 +1,8 @@
 <script>
     import { Separator } from '$lib/components/ui/select/index.js';
-    import Variables from '$lib/helpers/variables.svelte.js';
-    import { BookMarked, Circle, GitFork, Scale, Star } from '@lucide/svelte';
-    import { cn, findLanguageColor, popConfetti } from '$lib/helpers/utils.js';
+    import Variables, { Variables as V } from '$lib/helpers/variables.svelte.js';
+    import { BookMarked, Circle, Scale, Star } from '@lucide/svelte';
+    import { findLanguageColor } from '$lib/helpers/utils.js';
     import { Skeleton } from '$lib/components/ui/skeleton/index.js';
     import { lighten, transparentize } from 'color2k';
     import { mode } from 'mode-watcher';
@@ -17,7 +17,7 @@
             <Separator class="mt-2 w-1/2 h-0.5 rounded-full shrink bg-border"/>
         </h2>
         <div class="grid sm:grid-cols-2 grid-cols-1 gap-2">
-            {#if Variables.repositories}
+            {#if Variables.repositories?.length}
                 {#each Variables.repositories as repository}
                     {@const color = findLanguageColor(repository.language)}
                     {@const foreground = color && (mode.current !== 'dark' ? color : lighten(color, 0.1))}
@@ -67,7 +67,7 @@
                     </div>
                 {/each}
             {:else}
-                {#each Array(4) as _}
+                {#each V.repositories as _}
                     <div class="sm:w-full w-full flex flex-col gap-2 p-5 bg-border/80 border shadow-sm rounded-2xl">
                         <Skeleton class="h-6 rounded-full w-52"/>
                         <div class="flex flex-col gap-1 w-full">

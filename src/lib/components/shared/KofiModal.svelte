@@ -3,6 +3,8 @@
     import { Dialog, DialogContent } from '$lib/components/ui/dialog';
     import { Button } from '$lib/components/ui/button';
     import { X } from '@lucide/svelte';
+    import { Skeleton } from '../ui/skeleton';
+    import CatWithTearsOfJoy from '../svg/CatWithTearsOfJoy.svelte';
 
     let isOpen = $derived(!!page.state.openKofi);
 
@@ -21,9 +23,13 @@
         </Button>
         <iframe
             src="https://ko-fi.com/catplvsplus/?hidefeed=true&widget=true&embed=true&preview=true"
-            class="border-none w-full h-full"
+            class="border-none size-full absolute top-0 left-0 z-10"
             height="100%"
             title="Ko-fi"
         ></iframe>
+        <div class="absolute size-full flex justify-center items-center">
+            <CatWithTearsOfJoy class="animate-bounce size-36"/>
+        </div>
+        <Skeleton class="size-full top-0 left-0 flex justify-center items-center"/>
     </DialogContent>
 </Dialog>
