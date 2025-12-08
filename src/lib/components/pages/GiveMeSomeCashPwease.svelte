@@ -3,7 +3,7 @@
     import { Button } from '$lib/components/ui/button/index.js';
     import { SiKofi } from '@icons-pack/svelte-simple-icons';
     import { IsInViewport } from 'runed';
-    import { blur, fade } from 'svelte/transition';
+    import { blur, fade, slide } from 'svelte/transition';
     import Confetti from 'svelte-confetti';
     import ParallaxContainer from '$lib/components/shared/ParallaxContainer.svelte';
     import Variables from '$lib/helpers/variables.svelte';
@@ -11,11 +11,13 @@
     import SmilingCatWithHeartEyes from '$lib/components/svg/SmilingCatWithHeartEyes.svelte';
     import { pushState } from '$app/navigation';
     import { confettiColors } from '$lib/helpers/constants';
+    import { ArrowDownIcon } from '@lucide/svelte';
 
     Confetti;
 
     let target: HTMLDivElement = $state()!;
     let showConfetti: boolean = $state(false);
+    let hoveringScroll: boolean = $state(false);
 
     const isInViewport = new IsInViewport(() => target);
 </script>
@@ -102,6 +104,24 @@
                         {@render InlineConfetti()}
                     </span>
                 {/if}
+            </div>
+            <div class="h-full absolute top-full mt-10 opacity-50">
+                <div class="absolute bottom-1/2 left-1/2 -translate-x-1/2">
+                    <Button
+                        onfocus={() => hoveringScroll = true}
+                        onblur={() => hoveringScroll = false}
+                        onmouseover={() => hoveringScroll = true}
+                        onmouseout={() => hoveringScroll = false}
+                        onclick={() => scrollTo({ top: window.outerHeight * 3, behavior: 'smooth' })}
+                        class="animate-bounce [&_svg]:size-5"
+                        variant="ghost"
+                    >
+                        {#if hoveringScroll}
+                            <span transition:slide      ={{ axis: 'x' }}>Scroll Down</span>
+                        {/if}
+                        <ArrowDownIcon/>
+                    </Button>
+                </div>
             </div>
         {/if}
     </div>

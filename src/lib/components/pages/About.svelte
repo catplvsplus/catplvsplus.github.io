@@ -56,7 +56,7 @@
         <SongOfTheDayCard/>
     </div>
     <div class="w-full sm:max-w-2xl max-w-sm p-5 bg-border/80 border shadow-sm rounded-2xl">
-        <h2 class="font-special-gothic-expanded-one text-xl mb-3">Technical Skills</h2>
+        <h2 class="font-special-gothic-expanded-one text-xl mb-3">Proficient in...</h2>
         <div class="flex flex-wrap gap-1">
             {#each technicakSkills as skill}
                 {@const background = transparentize(skill.color, 0.8)}

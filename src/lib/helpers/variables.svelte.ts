@@ -20,7 +20,7 @@ export class Variables {
     public reducedTransparencyQuery = new MediaQuery('(prefers-reduced-transparency: reduce)', true);
 
     public reducedMotionStore: PersistedState<boolean|0> = new PersistedState('reduced-motion', 0, { storage: 'local', syncTabs: true });
-    public reducedTransparencyStore: PersistedState<boolean|0> = new PersistedState('transparency', 0, { storage: 'local', syncTabs: true });
+    public reducedTransparencyStore: PersistedState<boolean|0> = new PersistedState('transparency', isMobile() || 0, { storage: 'local', syncTabs: true });
     public enableConfettiStore: PersistedState<boolean|0> = new PersistedState('enable-confetti', 0, { storage: 'local', syncTabs: true });
     public songIdStore: PersistedState<SongOfTheDay> = new PersistedState('song-id', {
         id: Variables.getRandomSongId()!,
