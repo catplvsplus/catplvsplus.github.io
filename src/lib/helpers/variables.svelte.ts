@@ -9,7 +9,7 @@ export class Variables {
     public static username: string = 'catplvsplus';
     public static repositories: string[] = [
         'reciplejs/Reciple',
-        'catplvsplus/prtyprnt',
+        'catplvsplus/prtty',
         'catplvsplus/lrclib.js',
         'FalloutStudios/sourcebin.js',
         'FalloutStudios/Axis',
