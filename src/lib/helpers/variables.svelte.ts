@@ -8,11 +8,11 @@ import ky from 'ky';
 export class Variables {
     public static username: string = 'catplvsplus';
     public static repositories: string[] = [
-        'reciplejs/Reciple',
+        'reciplejs/reciple',
         'catplvsplus/prtty',
         'catplvsplus/lrclib.js',
-        'FalloutStudios/sourcebin.js',
-        'FalloutStudios/Axis',
+        'catplvsplus/kirin',
+        'catplvsplus/kirin-bot',
         'FalloutStudios/HiddenPlayer'
     ];
 
