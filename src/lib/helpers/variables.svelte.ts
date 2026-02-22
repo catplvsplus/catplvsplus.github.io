@@ -10,7 +10,7 @@ export class Variables {
     public static repositories: string[] = [
         'reciplejs/reciple',
         'catplvsplus/prtty',
-        'catplvsplus/qweery'
+        'catplvsplus/qweery',
         'catplvsplus/lrclib.js',
         'catplvsplus/kirin',
         'catplvsplus/kirin-bot',
