@@ -10,10 +10,10 @@ export class Variables {
     public static repositories: string[] = [
         'reciplejs/reciple',
         'catplvsplus/prtty',
+        'catplvsplus/qweery'
         'catplvsplus/lrclib.js',
         'catplvsplus/kirin',
         'catplvsplus/kirin-bot',
-        'FalloutStudios/HiddenPlayer'
     ];
 
     public reducedMotionQuery = new MediaQuery('(prefers-reduced-motion: reduce)', true);
